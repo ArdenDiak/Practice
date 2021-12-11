@@ -1,7 +1,7 @@
 /*
  * CS:APP Data Lab
  *
- * <Please put your name and userid here>
+ * Arden Diakhate-Palme
  *
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -24,11 +24,11 @@ You will provide your solution to the Data Lab by
 editing the collection of functions in this source file.
 
 INTEGER CODING RULES:
- 
+
   Replace the "return" statement in each function with one
-  or more lines of C code that implements the function. Your code 
+  or more lines of C code that implements the function. Your code
   must conform to the following style:
- 
+
   long Funct(long arg1, long arg2, ...) {
       /* brief description of how your implementation works */
       long var1 = Expr1;
@@ -52,7 +52,7 @@ INTEGER CODING RULES:
   6. Binary integer operations & ^ | + << >>
      - Their arguments can have types int or long
   7. Casting from int to long and from long to int
-    
+
   Some of the problems restrict the set of allowed operators even further.
   Each "Expr" may consist of multiple operators. You are not restricted to
   one operator per line.
@@ -66,7 +66,7 @@ INTEGER CODING RULES:
   6. Use any form of casting other than between int and long.
   7. Use any data type other than int or long.  This implies that you
      cannot use arrays, structs, or unions.
- 
+
   You may assume that your machine:
   1. Uses 2s complement representations for int and long.
   2. Data type int is 32 bits, long is 64.
@@ -113,7 +113,7 @@ You are expressly forbidden to:
 
 
 NOTES:
-  1. Use the dlc (data lab checker) compiler (described in the handout) to 
+  1. Use the dlc (data lab checker) compiler (described in the handout) to
      check the legality of your solutions.
   2. Each function has a maximum number of operations (integer, logical,
      or comparison) that you are allowed to use for your implementation
@@ -123,17 +123,17 @@ NOTES:
   3. Use the btest test harness to check your functions for correctness.
   4. Use the BDD checker to formally verify your functions
   5. The maximum number of ops for each function is given in the
-     header comment for each function. If there are any inconsistencies 
+     header comment for each function. If there are any inconsistencies
      between the maximum ops in the writeup and in this file, consider
      this file the authoritative source.
 
 /*
  * STEP 2: Modify the following functions according the coding rules.
- * 
+ *
  *   IMPORTANT. TO AVOID GRADING SURPRISES:
  *   1. Use the dlc compiler to check that your solutions conform
  *      to the coding rules.
- *   2. Use the BDD checker to formally verify that your solutions produce 
+ *   2. Use the BDD checker to formally verify that your solutions produce
  *      the correct answers.
  */
 
@@ -174,7 +174,7 @@ NOTES:
  *   Rating: 1
  */
 long bitNor(long x, long y) {
-    return 2L;
+    return (~x & ~y);
 }
 // 2
 /*
@@ -186,7 +186,12 @@ long bitNor(long x, long y) {
  *   Rating: 2
  */
 long anyOddBit(long x) {
-    return 2;
+    long mask1 = 0x55L | (0x55L << 8) | (0x55L << 16) | (0x55L << 24) | (0x55L << 32);
+    long mask = mask | (mask1 << 32);
+    printf("%x\n",mask);
+
+    long oddBit = !(mask & x);
+    return ~oddBit;
 }
 /*
  * negate - return -x
