@@ -186,12 +186,10 @@ long bitNor(long x, long y) {
  *   Rating: 2
  */
 long anyOddBit(long x) {
-    long mask1 = 0x55L | (0x55L << 8) | (0x55L << 16) | (0x55L << 24) | (0x55L << 32);
-    long mask = mask | (mask1 << 32);
-    printf("%x\n",mask);
+    long mask1 = 0xAAL | (0xAAL << 8) | (0xAAL << 16) | (0xAAL << 24) | (0xAAL << 32);
+    long mask = mask1 | (mask1 << 32);
 
-    long oddBit = !(mask & x);
-    return ~oddBit;
+    return (long)(!(mask & x) ^ 0x1L);
 }
 /*
  * negate - return -x
@@ -201,7 +199,7 @@ long anyOddBit(long x) {
  *   Rating: 2
  */
 long negate(long x) {
-    return 2L;
+    return ~x + 0x1L;
 }
 /*
  * sign - return 1 if positive, 0 if zero, and -1 if negative
@@ -212,7 +210,8 @@ long negate(long x) {
  *  Rating: 2
  */
 long sign(long x) {
-    return 2L;
+    long y= (x >> 63);
+    return y | !(!x);
 }
 // 3
 /*
@@ -224,7 +223,9 @@ long sign(long x) {
  *   Rating: 3
  */
 long logicalShift(long x, long n) {
-    return 2L;
+    long max_neg = 0x1L << 63;
+    long mask = (max_neg >> n) << 0x1L;
+    return (x >> n) & ~mask;
 }
 /*
  * subtractionOK - Determine if can compute x-y without overflow
@@ -235,7 +236,16 @@ long logicalShift(long x, long n) {
  *   Rating: 3
  */
 long subtractionOK(long x, long y) {
-    return 2L;
+    long z = (~y) + 0x1L;
+
+    long z_pos= !(z >> 63);
+    long x_pos= !(x >> 63);
+
+    long sum = x + z;
+    long sum_pos = !(sum >> 63);
+
+    return !((z_pos & x_pos & (~sum_pos)) |
+           ((~z_pos) & (~x_pos) & sum_pos));
 }
 /*
  * isLess - if x < y  then return 1, else return 0
@@ -245,7 +255,22 @@ long subtractionOK(long x, long y) {
  *   Rating: 3
  */
 long isLess(long x, long y) {
-    return 2L;
+    long xs= (x>>63) & 0x1L;
+    long ys= (y>>63) & 0x1L;
+    long s = x + (~y +1L);
+
+    long ss= (s>>63) & 0x1L;
+
+    /*
+    //Code without SOP result for clarity
+    if(xs & ~ys & ~ss) return 1;
+    if(~xs & ys & ss)  return 0;
+
+    return ss;
+    */
+
+    return (((xs | ~ys | ~ss) & (~xs | ys | ss)) & ss) |
+           (((~xs & ys & ss) | (xs & ~ys & ~ss)) & ~ss);
 }
 // 4
 /*
@@ -256,7 +281,9 @@ long isLess(long x, long y) {
  *   Rating: 4
  */
 long bang(long x) {
-    return 2L;
+    long y = (~x) + 0x1L;
+    //y is already given no need to check sign you're doing it heree
+    return (x >> 63 | y >> 63) + 1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
@@ -271,8 +298,35 @@ long bang(long x) {
  *  Rating: 4
  */
 long howManyBits(long x) {
-    return 0L;
+    long y = (~(x>>63) & x) | ((x>>63) & ~x);
+
+    long b0, b1, b2, b4, b8, b16, b32;
+    long sum;
+
+    b32= !!(y >> 32) << 5;
+    y = y >> b32;         //then shift forward by that amount only if it is non-zero!
+
+    b16= !!(y >> 16) << 4;
+    y = y >> b16;
+
+    b8= !!(y >> 8) << 3;
+    y = y >> b8;
+
+    b4= !!(y >> 4) << 2;
+    y = y >> b4;
+
+    b2= !!(y >> 2) << 1;
+    y = y >> b2;
+
+    b1= !!(y >> 1);
+    y = y >> b1;
+
+    b0= y;
+
+    sum= b0 + b1 + b2 + b4 + b8 + b16 + b32;
+    return sum + 0x1L; //MSB is sign bit
 }
+
 // float
 /*
  * floatNegate - Return bit-level equivalent of expression -f for
