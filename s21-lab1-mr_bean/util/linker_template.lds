@@ -53,7 +53,7 @@ SECTIONS {
   _erodata = . ;
 
 .data 0x20000000 :
-  AT ( _erodata ) 
+  AT ( _erodata )
   {
     _k_data = .;
     <K_OBJ_DIR>/*.o (.data*); /*END REGION*/
@@ -114,3 +114,5 @@ SECTIONS {
 
   end = .;
 }
+
+
