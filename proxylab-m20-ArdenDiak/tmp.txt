@@ -1,0 +1,133 @@
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:32524/random-text1.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32524
+=======================
+cli      pxy ---> srv:
+GET /random-text1.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:32524
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:32619/random-text1.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32619
+=======================
+cli      pxy ---> srv:
+GET /random-text1.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:32619
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:3744/random-text2.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:3744
+=======================
+cli      pxy ---> srv:
+GET /random-text2.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:3744
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:32524/random-text2.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32524
+=======================
+cli      pxy ---> srv:
+GET /random-text2.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:32524
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:32619/random-text3.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32619
+=======================
+cli      pxy ---> srv:
+GET /random-text3.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:32619
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:3744/random-text3.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:3744
+=======================
+cli      pxy ---> srv:
+GET /random-text3.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:3744
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:32619/random-text4.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32619
+=======================
+cli      pxy ---> srv:
+GET /random-text4.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:32619
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:3744/random-text4.txt HTTP/1.0
+======================
+cli      pxy <--> srv @ ece011.ece.local.cmu.edu:3744
+=======================
+cli      pxy ---> srv:
+GET /random-text4.txt HTTP/1.0
+Host: ece011.ece.local.cmu.edu:3744
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Connection: close
+Proxy-Connection: close
+
+
+=====================
+cli <--> pxy @ localhost:12345
+======================
+cli ---> pxy      srv:
+GET http://ece011.ece.local.cmu.edu:3744/random-text5.txt HTTP/1.0
+=

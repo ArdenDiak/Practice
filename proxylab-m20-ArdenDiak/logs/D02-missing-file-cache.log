@@ -1,0 +1,29 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:8040
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D02-missing-file-cache.cmd'
+># Test ability to handle missing file from cache
+># This test can be passed by a sequential proxy
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:27228
+>request r1a random-text1.txt s1
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:27228
+>wait *
+>respond r1a
+Server responded to request r1a with status not_found (File 'random-text1.txt' not found)
+>wait *
+>check r1a 404
+Request r1a yielded expected status 'not_found'
+>fetch f2 random-text2.txt s1
+Client: Fetching '/random-text2.txt' from ece011.ece.local.cmu.edu:27228
+>wait *
+>check f2 404
+Request f2 yielded expected status 'not_found'
+># Proxy should respond immediately with missing file notification
+>request r1b random-text1.txt s1
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:27228
+>wait *
+>check r1b 404
+Request r1b yielded expected status 'not_found'
+>quit
+Testing done.  Elapsed time = 1.19 seconds
+ALL TESTS PASSED

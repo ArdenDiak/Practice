@@ -1,0 +1,590 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Beat	pxy/agents.py	/^class Beat:$/;"	c
+CC	Makefile	/^CC = gcc$/;"	m
+CC	pxy/Makefile	/^CC = gcc$/;"	m
+CC	tiny/Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -g -Og -Wall -std=c99 -MMD -D_FORTIFY_SOURCE=2 -D_XOPEN_SOURCE=700 -I.$/;"	m
+CFLAGS	pxy/Makefile	/^CFLAGS = -O2 -g -Wall -std=c99$/;"	m
+CFLAGS	tiny/Makefile	/^CFLAGS = -g -O2 -std=c99 -Wall -Werror -Wextra -D_FORTIFY_SOURCE=2 -D_XOPEN_SOURCE=700 -I..$/;"	m
+COURSECODE	.labname.mk	/^COURSECODE = 15213-m20 15513-m20$/;"	m
+CSAPP_H	csapp.h	39;"	d
+Calloc	csapp.c	/^void *Calloc(size_t nmemb, size_t size) {$/;"	f
+Calloc	tiny/csapp.c	/^void *Calloc(size_t nmemb, size_t size) {$/;"	f
+Command	pxy/console.py	/^class Command:$/;"	c
+DEF_MODE	csapp.h	46;"	d
+DEF_UMASK	csapp.h	47;"	d
+DEPS	Makefile	/^DEPS = $(filter %.h,$(HANDIN_FILES))$/;"	m
+Disruption	pxy/agents.py	/^class Disruption:$/;"	c
+Driver	pxy/pxydrive.py	/^class Driver:$/;"	c
+ERROR	http_parser.h	/^    ERROR    \/**< an error occurred *\/$/;"	e	enum:parser_state
+Event	pxy/events.py	/^class Event:$/;"	c
+EventException	pxy/events.py	/^class EventException(Exception):$/;"	c
+EventManager	pxy/events.py	/^class EventManager:$/;"	c
+FILES	Makefile	/^FILES = proxy $(HANDIN_TAR)$/;"	m
+FILES	tiny/Makefile	/^FILES = tiny tiny-static cgi-bin\/adder$/;"	m
+FORMAT_FILES	Makefile	/^FORMAT_FILES = $(SOURCES) $(DEPS)$/;"	m
+FileManager	pxy/files.py	/^class FileManager:$/;"	c
+FileMonitor	pxy/files.py	/^class FileMonitor:$/;"	c
+Free	csapp.c	/^void Free(void *ptr) {$/;"	f
+Free	tiny/csapp.c	/^void Free(void *ptr) {$/;"	f
+HANDIN_FILE	helper.mk	/^  HANDIN_FILE = $(HANDIN_FILES)$/;"	m
+HANDIN_FILE	helper.mk	/^  HANDIN_FILE = $(HANDIN_TAR)$/;"	m
+HANDIN_FILES	Makefile	/^HANDIN_FILES = $(shell \\$/;"	m
+HANDIN_TAR	Makefile	/^HANDIN_TAR = proxylab-handin.tar$/;"	m
+HEADER	http_parser.h	/^    HEADER,  \/**< parsed an HTTP header *\/$/;"	e	enum:parser_state
+HOST	http_parser.h	/^    HOST,           \/**< a network host, e.g. cs.cmu.edu *\/$/;"	e	enum:parser_value
+HOSTLEN	tiny/tiny-static.c	25;"	d	file:
+HOSTLEN	tiny/tiny.c	26;"	d	file:
+HTTPStatus	pxy/agents.py	/^class HTTPStatus:$/;"	c
+HTTP_VERSION	http_parser.h	/^    HTTP_VERSION    \/**< The HTTP version without the HTTP\/, e.g. 1.0 or 1.1 *\/$/;"	e	enum:parser_value
+HeaderReader	pxy/agents.py	/^class HeaderReader:$/;"	c
+HeartbeatManager	pxy/agents.py	/^class HeartbeatManager:$/;"	c
+InstrumentCache	pxy/agents.py	/^class InstrumentCache:$/;"	c
+Killer	pxy/pxyregress.py	/^class Killer:$/;"	c
+LAB	.labname.mk	/^LAB = proxylabcheckpoint$/;"	m
+LAB_CHECKPOINT	.labname.mk	/^LAB_CHECKPOINT = proxylabcheckpoint$/;"	m
+LAB_FINAL	.labname.mk	/^LAB_FINAL = proxylab$/;"	m
+LDLIBS	Makefile	/^LDLIBS = -lpthread -lm -lpcre$/;"	m
+LDLIBS	tiny/Makefile	/^LDLIBS = -lpthread$/;"	m
+LISTENQ	csapp.h	66;"	d
+LLVM_PATH	Makefile	/^  LLVM_PATH = \/usr\/lib\/llvm-7\/bin\/$/;"	m
+LLVM_PATH	Makefile	/^LLVM_PATH = \/usr\/local\/depot\/llvm-7.0\/bin\/$/;"	m
+MAXBUF	csapp.h	65;"	d
+MAXLINE	csapp.h	64;"	d
+MAXNAME	http_parser.h	20;"	d
+MAX_CACHE_SIZE	proxy.c	33;"	d	file:
+MAX_HDR_NAME_LEN	socket_comm.h	38;"	d
+MAX_HOST_LEN	socket_comm.h	23;"	d
+MAX_NUM_CLI_HDRS	socket_comm.h	35;"	d
+MAX_NUM_HDRS	socket_comm.h	28;"	d
+MAX_OBJECT_SIZE	proxy.c	34;"	d	file:
+MAX_PATH_LEN	socket_comm.h	24;"	d
+MAX_PORT_LEN	socket_comm.h	25;"	d
+MAX_REQ_LEN	socket_comm.h	29;"	d
+MAX_RESP_LEN	socket_comm.h	32;"	d
+METHOD	http_parser.h	/^    METHOD,         \/**< HTTP request method, e.g. GET or POST *\/$/;"	e	enum:parser_value
+Malloc	csapp.c	/^void *Malloc(size_t size) {$/;"	f
+Malloc	tiny/csapp.c	/^void *Malloc(size_t size) {$/;"	f
+OBJECTS	Makefile	/^OBJECTS = $(SOURCES:%.c=%.o)$/;"	m
+Option	pxy/console.py	/^class Option:$/;"	c
+PARSER_LIB_PATH	Makefile	/^PARSER_LIB_PATH = \/afs\/cs.cmu.edu\/academic\/class\/15213-m20\/www\/labs\/proxylab$/;"	m
+PARSER_MAXLINE	http_parser.h	21;"	d
+PARSE_DYNAMIC	tiny/tiny-static.c	/^    PARSE_DYNAMIC$/;"	e	enum:__anon5	file:
+PARSE_DYNAMIC	tiny/tiny.c	/^    PARSE_DYNAMIC$/;"	e	enum:__anon3	file:
+PARSE_ERROR	tiny/tiny-static.c	/^    PARSE_ERROR,$/;"	e	enum:__anon5	file:
+PARSE_ERROR	tiny/tiny.c	/^    PARSE_ERROR,$/;"	e	enum:__anon3	file:
+PARSE_STATIC	tiny/tiny-static.c	/^    PARSE_STATIC,$/;"	e	enum:__anon5	file:
+PARSE_STATIC	tiny/tiny.c	/^    PARSE_STATIC,$/;"	e	enum:__anon3	file:
+PATH	http_parser.h	/^    PATH,           \/**< The path to find a resource, e.g. index.html *\/$/;"	e	enum:parser_value
+PORT	http_parser.h	/^    PORT,           \/**< The port to connect on, by default 80 *\/$/;"	e	enum:parser_value
+PortFinder	pxy/agents.py	/^class PortFinder:$/;"	c
+Printer	pxy/files.py	/^class Printer:$/;"	c
+REQUEST	http_parser.h	/^    REQUEST, \/**< parsed request line *\/$/;"	e	enum:parser_state
+RIO_BUFSIZE	csapp.h	50;"	d
+Realloc	csapp.c	/^void *Realloc(void *ptr, size_t size) {$/;"	f
+Realloc	tiny/csapp.c	/^void *Realloc(void *ptr, size_t size) {$/;"	f
+RequestGenerator	pxy/agents.py	/^class RequestGenerator:$/;"	c
+SA	tiny/tiny-static.c	/^typedef struct sockaddr SA;$/;"	t	typeref:struct:sockaddr	file:
+SA	tiny/tiny.c	/^typedef struct sockaddr SA;$/;"	t	typeref:struct:sockaddr	file:
+SCHEME	http_parser.h	/^    SCHEME,         \/**< scheme to connect over, e.g. http or https *\/$/;"	e	enum:parser_value
+SELECTED_COURSECODE	helper.mk	/^SELECTED_COURSECODE = $(COURSECODE)$/;"	m
+SELECTED_COURSECODE	helper.mk	/^SELECTED_COURSECODE = $(shell cat .selected_course.txt)$/;"	m
+SELECT_COURSE_MESSAGE	helper.mk	/^SELECT_COURSE_MESSAGE =$/;"	m
+SERVLEN	tiny/tiny-static.c	26;"	d	file:
+SERVLEN	tiny/tiny.c	27;"	d	file:
+SHELL	Makefile	/^SHELL = \/bin\/bash$/;"	m
+SOURCES	Makefile	/^SOURCES = $(filter %.c,$(HANDIN_FILES))$/;"	m
+SUBMIT_MESSAGE	helper.mk	/^SUBMIT_MESSAGE =$/;"	m
+SUBMIT_SEPARATE	helper.mk	/^    SUBMIT_SEPARATE = 1$/;"	m
+Server	pxy/agents.py	/^class Server:$/;"	c
+ShutdownException	pxy/files.py	/^class ShutdownException(Exception):$/;"	c
+Signal	csapp.c	/^handler_t *Signal(int signum, handler_t *handler) {$/;"	f
+Signal	tiny/csapp.c	/^handler_t *Signal(int signum, handler_t *handler) {$/;"	f
+SocketFile	pxy/files.py	/^class SocketFile:$/;"	c
+TextUtil	pxy/files.py	/^class TextUtil:$/;"	c
+URI	http_parser.h	/^    URI,            \/**< the entire URI *\/$/;"	e	enum:parser_value
+__HTTP_PARSER_H__	http_parser.h	18;"	d
+__init__	pxy/agents.py	/^    def __init__(self):$/;"	m	class:Disruption
+__init__	pxy/agents.py	/^    def __init__(self):$/;"	m	class:HTTPStatus
+__init__	pxy/agents.py	/^    def __init__(self):$/;"	m	class:InstrumentCache
+__init__	pxy/agents.py	/^    def __init__(self, eventManager, fileManager, printer, proxy = None, strict = None, verbose = None):$/;"	m	class:RequestGenerator
+__init__	pxy/agents.py	/^    def __init__(self, host, portLimit, eventManager, fileManager, portManager, printer, id = "main", strict = None, verbose = None, disabled = False):$/;"	m	class:Server
+__init__	pxy/agents.py	/^    def __init__(self, host, portLimit, portManager, printer, verbose = False):$/;"	m	class:HeartbeatManager
+__init__	pxy/agents.py	/^    def __init__(self, msg):$/;"	m	class:Beat
+__init__	pxy/agents.py	/^    def __init__(self, printer):$/;"	m	class:PortFinder
+__init__	pxy/agents.py	/^    def __init__(self, strict = None):$/;"	m	class:HeaderReader
+__init__	pxy/console.py	/^    def __init__(self):$/;"	m	class:Command
+__init__	pxy/console.py	/^    def __init__(self, value):$/;"	m	class:Option
+__init__	pxy/events.py	/^    def __init__(self):$/;"	m	class:EventManager
+__init__	pxy/events.py	/^    def __init__(self, info = ""):$/;"	m	class:EventException
+__init__	pxy/events.py	/^    def __init__(self, isRequest, time, id, path = "", text = "", server = "", isFetch = False):$/;"	m	class:Event
+__init__	pxy/files.py	/^    def __init__(self):$/;"	m	class:Printer
+__init__	pxy/files.py	/^    def __init__(self):$/;"	m	class:TextUtil
+__init__	pxy/files.py	/^    def __init__(self, file, printer, id = None):$/;"	m	class:FileMonitor
+__init__	pxy/files.py	/^    def __init__(self, info = ""):$/;"	m	class:ShutdownException
+__init__	pxy/files.py	/^    def __init__(self, printer = None, fileGenerator = None):$/;"	m	class:FileManager
+__init__	pxy/files.py	/^    def __init__(self, sock):$/;"	m	class:SocketFile
+__init__	pxy/pxydrive.py	/^    def __init__(self):$/;"	m	class:Driver
+__init__	pxy/pxyregress.py	/^    def __init__(self, limit = None):$/;"	m	class:Killer
+__sio_assert_fail	csapp.c	/^void __sio_assert_fail(const char *assertion, const char *file,$/;"	f
+__sio_assert_fail	tiny/csapp.c	/^void __sio_assert_fail(const char *assertion, const char *file,$/;"	f
+__str__	pxy/agents.py	/^    def __str__(self):$/;"	m	class:Beat	file:
+__str__	pxy/events.py	/^    def __str__(self):$/;"	m	class:Event	file:
+__str__	pxy/events.py	/^    def __str__(self):$/;"	m	class:EventException	file:
+__str__	pxy/files.py	/^    def __str__(self):$/;"	m	class:ShutdownException	file:
+__str__	pxy/files.py	/^    def __str__(self):$/;"	m	class:SocketFile	file:
+_format_data	csapp.c	/^struct _format_data {$/;"	s	file:
+_format_data	tiny/csapp.c	/^struct _format_data {$/;"	s	file:
+_handle_format	csapp.c	/^static size_t _handle_format(const char *fmt, va_list argp,$/;"	f	file:
+_handle_format	tiny/csapp.c	/^static size_t _handle_format(const char *fmt, va_list argp,$/;"	f	file:
+abortLimit	pxy/pxyregress.py	/^abortLimit = 3$/;"	v
+activate	pxy/pxyregress.py	/^    def activate(self, process):$/;"	m	class:Killer
+activeEvents	pxy/pxydrive.py	/^    activeEvents = {}$/;"	v	class:Driver
+addBeat	pxy/events.py	/^    def addBeat(self, origin):$/;"	m	class:EventManager
+addCommand	pxy/console.py	/^    def addCommand(self, name, method, argstring, docstring):$/;"	m	class:Command
+addCompleted	pxy/events.py	/^    def addCompleted(self, event):$/;"	m	class:EventManager
+addEvent	pxy/events.py	/^    def addEvent(self, isRequest, id="", server = "", isFetch = False, mutex = True):$/;"	m	class:EventManager
+addFile	pxy/files.py	/^    def addFile(self,file):$/;"	m	class:Printer
+addOption	pxy/console.py	/^    def addOption(self, name, option, docstring):$/;"	m	class:Command
+addPath	pxy/events.py	/^    def addPath(self, path):$/;"	m	class:Event
+addRequestEvent	pxy/events.py	/^    def addRequestEvent(self, id = "", server = "", isFetch = False):$/;"	m	class:EventManager
+addResponseEvent	pxy/events.py	/^    def addResponseEvent(self, id = "", server = ""):$/;"	m	class:EventManager
+addText	pxy/events.py	/^    def addText(self, text):$/;"	m	class:Event
+addURI	pxy/events.py	/^    def addURI(self, uri):$/;"	m	class:Event
+addr	tiny/tiny-static.c	/^    struct sockaddr_in addr;    \/\/ Socket address$/;"	m	struct:__anon4	typeref:struct:__anon4::sockaddr_in	file:
+addr	tiny/tiny.c	/^    struct sockaddr_in addr;    \/\/ Socket address$/;"	m	struct:__anon2	typeref:struct:__anon2::sockaddr_in	file:
+addrlen	tiny/tiny-static.c	/^    socklen_t addrlen;          \/\/ Socket address length$/;"	m	struct:__anon4	file:
+addrlen	tiny/tiny.c	/^    socklen_t addrlen;          \/\/ Socket address length$/;"	m	struct:__anon2	file:
+age	pxy/agents.py	/^    def age(self):$/;"	m	class:Beat
+allOK	pxy/agents.py	/^    allOK = False$/;"	v	class:RequestGenerator
+allOK	pxy/agents.py	/^    allOK = True$/;"	v	class:Server
+autoTrace	pxy/pxydrive.py	/^    autoTrace = None$/;"	v	class:Driver
+beatAge	pxy/agents.py	/^    def beatAge(self, age):$/;"	m	class:HeartbeatManager
+beatCount	pxy/agents.py	/^    beatCount = 0$/;"	v	class:HeartbeatManager
+beatList	pxy/agents.py	/^    beatList = []$/;"	v	class:HeartbeatManager
+buf	csapp.c	/^    char buf[128];   \/\/ Backing buffer to use for conversions$/;"	m	struct:_format_data	file:
+buf	tiny/csapp.c	/^    char buf[128];   \/\/ Backing buffer to use for conversions$/;"	m	struct:_format_data	file:
+bufSize	pxy/files.py	/^    bufSize = 4096$/;"	v	class:SocketFile
+buffer	pxy/files.py	/^    buffer = bytes("") # Buffer of received but unread characters$/;"	v	class:SocketFile
+buildError	pxy/agents.py	/^    def buildError(self, tag, reason):$/;"	m	class:Server
+buildHeader	pxy/agents.py	/^    def buildHeader(self, tag, length, mimeType, id = "", uri = None):$/;"	m	class:Server
+cacheStatistics	pxy/agents.py	/^    def cacheStatistics(self):$/;"	m	class:RequestGenerator
+cancel	pxy/pxyregress.py	/^    def cancel(self):$/;"	m	class:Killer
+changeTag	pxy/events.py	/^    def changeTag(self, event, tag, reason):$/;"	m	class:EventManager
+checkLevel	pxy/pxyregress.py	/^checkLevel = 0$/;"	v
+checkProxy	pxy/pxydrive.py	/^    def checkProxy(self):$/;"	m	class:Driver
+checkTerm	pxy/agents.py	/^    def checkTerm(self, line):$/;"	m	class:HeaderReader
+chooseTests	pxy/pxyregress.py	/^def chooseTests(series):$/;"	f
+client_info	tiny/tiny-static.c	/^} client_info;$/;"	t	typeref:struct:__anon4	file:
+client_info	tiny/tiny.c	/^} client_info;$/;"	t	typeref:struct:__anon2	file:
+clienterror	socket_comm.c	/^void clienterror(int fd,$/;"	f
+clienterror	tiny/tiny-static.c	/^void clienterror(int fd, char *cause, char *errnum,$/;"	f
+clienterror	tiny/tiny.c	/^void clienterror(int fd, const char *errnum, const char *shortmsg,$/;"	f
+close	pxy/files.py	/^    def close(self):$/;"	m	class:Printer
+close	pxy/files.py	/^    def close(self):$/;"	m	class:SocketFile
+closeFiles	pxy/console.py	/^    def closeFiles(self):$/;"	m	class:Command
+codes	pxy/agents.py	/^    codes = {}$/;"	v	class:HTTPStatus
+commandDict	pxy/console.py	/^    commandDict = {} # Commands indexed by names.  Each entry is tuple (method, arguments, documentation)$/;"	v	class:Command
+compareFiles	pxy/files.py	/^    def compareFiles(self, sourcePath, responsePath, isGet = False):$/;"	m	class:FileManager
+completedEvents	pxy/events.py	/^    completedEvents = {} # Events that must have been completed$/;"	v	class:EventManager
+connfd	tiny/tiny-static.c	/^    int connfd;                 \/\/ Client connection file descriptor$/;"	m	struct:__anon4	file:
+connfd	tiny/tiny.c	/^    int connfd;                 \/\/ Client connection file descriptor$/;"	m	struct:__anon2	file:
+console	pxy/pxydrive.py	/^    console = None$/;"	v	class:Driver
+contentIdList	pxy/agents.py	/^    contentIdList = []$/;"	v	class:InstrumentCache
+contents	pxy/agents.py	/^    contents = None$/;"	v	class:Beat
+current	pxy/pxydrive.py	/^    current = os.path.realpath(__file__)$/;"	v
+current	pxy/pxyregress.py	/^    current = os.path.realpath(__file__)$/;"	v
+delay	pxy/events.py	/^    def delay(self, milliseconds):$/;"	m	class:EventManager
+deleteAllFiles	pxy/files.py	/^    def deleteAllFiles(self):$/;"	m	class:FileManager
+deleteFile	pxy/files.py	/^    def deleteFile(self, name):$/;"	m	class:FileManager
+descriptions	pxy/agents.py	/^    descriptions = {}$/;"	v	class:HTTPStatus
+disruption	pxy/agents.py	/^    disruption = Disruption.none$/;"	v	class:RequestGenerator
+disruption	pxy/agents.py	/^    disruption = Disruption.none$/;"	v	class:Server
+doCheck	pxy/pxydrive.py	/^    def doCheck(self, args):$/;"	m	class:Driver
+doComment	pxy/console.py	/^    def doComment(self, args):$/;"	m	class:Command
+doDelay	pxy/pxydrive.py	/^    def doDelay(self, args):$/;"	m	class:Driver
+doDelete	pxy/pxydrive.py	/^    def doDelete(self, args):$/;"	m	class:Driver
+doDisrupt	pxy/pxydrive.py	/^    def doDisrupt(self, args):$/;"	m	class:Driver
+doExternalProxy	pxy/pxydrive.py	/^    def doExternalProxy(self, args):$/;"	m	class:Driver
+doFetch	pxy/pxydrive.py	/^    def doFetch(self, args):$/;"	m	class:Driver
+doGenerate	pxy/pxydrive.py	/^    def doGenerate(self, args):$/;"	m	class:Driver
+doGet	pxy/pxydrive.py	/^    def doGet(self, args):$/;"	m	class:Driver
+doHelp	pxy/console.py	/^    def doHelp(self, args):$/;"	m	class:Command
+doLog	pxy/console.py	/^    def doLog(self, args):$/;"	m	class:Command
+doOption	pxy/console.py	/^    def doOption(self, args):$/;"	m	class:Command
+doPostRequest	pxy/pxydrive.py	/^    def doPostRequest(self, args):$/;"	m	class:Driver
+doProxy	pxy/pxydrive.py	/^    def doProxy(self, args):$/;"	m	class:Driver
+doQuit	pxy/console.py	/^    def doQuit(self, args):$/;"	m	class:Command
+doRequest	pxy/pxydrive.py	/^    def doRequest(self, args):$/;"	m	class:Driver
+doRequestOrFetch	pxy/pxydrive.py	/^    def doRequestOrFetch(self, args, isFetch, isPost):$/;"	m	class:Driver
+doRespond	pxy/pxydrive.py	/^    def doRespond(self, args):$/;"	m	class:Driver
+doServe	pxy/pxydrive.py	/^    def doServe(self, args):$/;"	m	class:Driver
+doSignal	pxy/pxydrive.py	/^    def doSignal(self, args):$/;"	m	class:Driver
+doSource	pxy/console.py	/^    def doSource(self, args):$/;"	m	class:Command
+doTrace	pxy/pxydrive.py	/^    def doTrace(self, args):$/;"	m	class:Driver
+doWait	pxy/pxydrive.py	/^    def doWait(self, args):$/;"	m	class:Driver
+documentCommand	pxy/console.py	/^    def documentCommand(self, name):$/;"	m	class:Command
+documentOption	pxy/console.py	/^    def documentOption(self, name, longestValue = 1):$/;"	m	class:Command
+driverProgram	pxy/pxyregress.py	/^driverProgram = "pxydrive.py"$/;"	v
+dynamicDirectory	pxy/files.py	/^    dynamicDirectory = "random"$/;"	v	class:FileManager
+echo	pxy/console.py	/^    echo = None    # Echo commands? (Option)$/;"	v	class:Command
+echoMsg	pxy/console.py	/^    def echoMsg(self, msg):$/;"	m	class:Command
+elapsedSeconds	pxy/events.py	/^def elapsedSeconds(startTime):$/;"	f
+elapsedTime	pxy/console.py	/^    def elapsedTime(self):$/;"	m	class:Command
+entries	pxy/agents.py	/^    entries = [(200, "ok", "OK"),$/;"	v	class:HTTPStatus
+errMsg	pxy/agents.py	/^    def errMsg(self, msg):$/;"	m	class:RequestGenerator
+errMsg	pxy/agents.py	/^    def errMsg(self, msg):$/;"	m	class:Server
+errMsg	pxy/console.py	/^    def errMsg(self, msg):$/;"	m	class:Command
+errMsg	pxy/files.py	/^    def errMsg(self, s, noreturn = False):$/;"	m	class:Printer
+error	pxy/events.py	/^    def error(self, text = None):$/;"	m	class:Event
+errorLimit	pxy/console.py	/^    errorLimit = None  # How many errors before giving up (Option)$/;"	v	class:Command
+errors	pxy/console.py	/^    errors = 0$/;"	v	class:Command
+eventManager	pxy/agents.py	/^    eventManager = None$/;"	v	class:RequestGenerator
+eventManager	pxy/agents.py	/^    eventManager = None$/;"	v	class:Server
+eventManager	pxy/pxydrive.py	/^    eventManager = None$/;"	v	class:Driver
+extensionMap	pxy/files.py	/^    extensionMap = {$/;"	v	class:FileManager
+file	pxy/files.py	/^    file = None$/;"	v	class:FileMonitor
+fileGenerator	pxy/files.py	/^    fileGenerator = None$/;"	v	class:FileManager
+fileGenerator	pxy/pxydrive.py	/^fileGenerator = "file_generator"$/;"	v
+fileManager	pxy/agents.py	/^    fileManager = None$/;"	v	class:RequestGenerator
+fileManager	pxy/agents.py	/^    fileManager = None$/;"	v	class:Server
+fileManager	pxy/pxydrive.py	/^    fileManager = None$/;"	v	class:Driver
+fileStack	pxy/console.py	/^    fileStack = [] # Need stack to support recursive inclusion of files$/;"	v	class:Command
+findEvent	pxy/events.py	/^    def findEvent(self, isRequest, id):$/;"	m	class:EventManager
+findFile	pxy/files.py	/^    def findFile(self, name, nofile = False):$/;"	m	class:FileManager
+findFileGenerator	pxy/pxydrive.py	/^def findFileGenerator():$/;"	f
+findLogPath	pxy/pxyregress.py	/^def findLogPath(testPath):$/;"	f
+findProgram	pxy/pxyregress.py	/^def findProgram():$/;"	f
+findTests	pxy/pxyregress.py	/^def findTests():$/;"	f
+findWrapperLibrary	pxy/pxydrive.py	/^def findWrapperLibrary():$/;"	f
+finish	pxy/console.py	/^    def finish(self):$/;"	m	class:Command
+finish	pxy/pxydrive.py	/^    def finish(self):$/;"	m	class:Driver
+finishFunction	pxy/console.py	/^    finishFunction = None$/;"	v	class:Command
+finishRequest	pxy/agents.py	/^    def finishRequest(self, event = None):$/;"	m	class:RequestGenerator
+finishShutdown	pxy/events.py	/^    def finishShutdown(self):$/;"	m	class:Event
+flush	pxy/agents.py	/^    def flush(self):$/;"	m	class:HeartbeatManager
+form_request	socket_comm.c	/^void form_request(char *pxy_req,$/;"	f
+fullLog	pxy/pxyregress.py	/^def fullLog(logPath):$/;"	f
+generateFile	pxy/files.py	/^    def generateFile(self, fname, bytes, linefeedPercent = None):$/;"	m	class:FileManager
+generateURL	pxy/agents.py	/^    def generateURL(self, fname):$/;"	m	class:Server
+generatedFiles	pxy/files.py	/^    generatedFiles = {}$/;"	v	class:FileManager
+getActive	pxy/agents.py	/^    def getActive(self):$/;"	m	class:PortFinder
+getBoolean	pxy/console.py	/^    def getBoolean(self):$/;"	m	class:Option
+getCode	pxy/agents.py	/^    def getCode(self, tag):$/;"	m	class:HTTPStatus
+getDescription	pxy/agents.py	/^    def getDescription(self, tag):$/;"	m	class:HTTPStatus
+getExtension	pxy/files.py	/^    def getExtension(self, fname):$/;"	m	class:FileManager
+getFilePath	pxy/files.py	/^    getFilePath = ".\/get_files"$/;"	v	class:FileManager
+getId	pxy/pxydrive.py	/^    getId = 0$/;"	v	class:Driver
+getInteger	pxy/console.py	/^    def getInteger(self):$/;"	m	class:Option
+getPath	pxy/files.py	/^    def getPath(self, fname):$/;"	m	class:FileManager
+getPending	pxy/events.py	/^    def getPending(self):$/;"	m	class:EventManager
+getRequest	pxy/agents.py	/^    def getRequest(self, sockFile):$/;"	m	class:Server
+getTag	pxy/agents.py	/^    def getTag(self, code):$/;"	m	class:HTTPStatus
+getURL	pxy/files.py	/^    def getURL(self, url, proxy = None, id = 0):$/;"	m	class:FileManager
+getValue	pxy/agents.py	/^    def getValue(self, token, default = ""):$/;"	m	class:HeaderReader
+get_filetype	tiny/tiny-static.c	/^void get_filetype(char *filename, char *filetype) {$/;"	f
+get_filetype	tiny/tiny.c	/^void get_filetype(char *filename, char *filetype) {$/;"	f
+gottenFiles	pxy/files.py	/^    gottenFiles = {}$/;"	v	class:FileManager
+handleConnection	pxy/agents.py	/^    def handleConnection(self, sockFile = None):$/;"	m	class:Server
+handleSignal	pxy/pxydrive.py	/^    def handleSignal(self, signum, frame):$/;"	m	class:Driver
+handleSignal	pxy/pxyregress.py	/^def handleSignal(signum, frame):$/;"	f
+handler_t	csapp.h	/^typedef void handler_t(int);$/;"	t
+hasMatch	pxy/events.py	/^    hasMatch = False   # Set when doing heuristic matching of events$/;"	v	class:Event
+hashname	port-for-user.pl	/^sub hashname {$/;"	s
+haveProxy	pxy/pxydrive.py	/^    haveProxy = False$/;"	v	class:Driver
+header	http_parser.h	/^typedef struct header {$/;"	s
+headerDict	pxy/agents.py	/^    headerDict = {}$/;"	v	class:HeaderReader
+headerLines	pxy/agents.py	/^    headerLines = ""$/;"	v	class:HeaderReader
+header_t	http_parser.h	/^} header_t;$/;"	t	typeref:struct:header
+heartbeatLimit	pxy/events.py	/^    heartbeatLimit = 2.0 # How recent a heartbeat to we consider a sign of recent activity (seconds)?$/;"	v	class:EventManager
+heartbeatManager	pxy/events.py	/^    heartbeatManager = None # Added when doing wrapped proxy$/;"	v	class:EventManager
+heartbeatManager	pxy/pxydrive.py	/^    heartbeatManager = None$/;"	v	class:Driver
+highText	pxy/files.py	/^    highText = ord('~')$/;"	v	class:TextUtil
+homePathFields	pxy/pxydrive.py	/^    homePathFields = current.split('\/')[:-1]$/;"	v
+homePathFields	pxy/pxydrive.py	/^homePathFields = ['.']$/;"	v
+homePathFields	pxy/pxyregress.py	/^    homePathFields = current.split('\/')[:-1]$/;"	v
+homePathFields	pxy/pxyregress.py	/^homePathFields = ['.']$/;"	v
+host	pxy/agents.py	/^    host = "localhost"$/;"	v	class:Server
+host	pxy/agents.py	/^    host = None$/;"	v	class:HeartbeatManager
+host	pxy/pxydrive.py	/^    host = "localhost"$/;"	v	class:Driver
+host	tiny/tiny-static.c	/^    char host[HOSTLEN];         \/\/ Client host$/;"	m	struct:__anon4	file:
+host	tiny/tiny.c	/^    char host[HOSTLEN];         \/\/ Client host$/;"	m	struct:__anon2	file:
+httpStatus	pxy/agents.py	/^    httpStatus = None$/;"	v	class:RequestGenerator
+httpStatus	pxy/agents.py	/^    httpStatus = None$/;"	v	class:Server
+id	pxy/agents.py	/^    id = "server"$/;"	v	class:Server
+id	pxy/events.py	/^    id = ""            # Every event has a named ID$/;"	v	class:Event
+id	pxy/files.py	/^    id = "FILE"$/;"	v	class:FileMonitor
+info	pxy/events.py	/^    info = ""$/;"	v	class:EventException
+info	pxy/files.py	/^    info = ""$/;"	v	class:ShutdownException
+insertDelays	pxy/pxydrive.py	/^    insertDelays = None$/;"	v	class:Driver
+instrumenter	pxy/agents.py	/^    instrumenter = None$/;"	v	class:RequestGenerator
+interpretLine	pxy/console.py	/^    def interpretLine(self, line):$/;"	m	class:Command
+intmax_to_string	csapp.c	/^static size_t intmax_to_string(intmax_t v, char s[], unsigned char b) {$/;"	f	file:
+intmax_to_string	tiny/csapp.c	/^static size_t intmax_to_string(intmax_t v, char s[], unsigned char b) {$/;"	f	file:
+isBinary	pxy/files.py	/^    def isBinary(self, extension):$/;"	m	class:FileManager
+isFetch	pxy/events.py	/^    isFetch = False    # Request can be fetch or request$/;"	v	class:Event
+isRequest	pxy/events.py	/^    isRequest = False  # Event is either request or response$/;"	v	class:Event
+key	pxy/events.py	/^    def key(self):$/;"	m	class:Event
+kill	pxy/pxyregress.py	/^    def kill(self):$/;"	m	class:Killer
+killTimer	pxy/pxyregress.py	/^    killTimer = None$/;"	v	class:Killer
+lastBeat	pxy/agents.py	/^    def lastBeat(self):$/;"	m	class:HeartbeatManager
+lastBeatAge	pxy/agents.py	/^    def lastBeatAge(self):$/;"	m	class:HeartbeatManager
+len	csapp.c	/^    size_t len;      \/\/ Length of string to output$/;"	m	struct:_format_data	file:
+len	tiny/csapp.c	/^    size_t len;      \/\/ Length of string to output$/;"	m	struct:_format_data	file:
+lf	pxy/files.py	/^    lf = '\\n'$/;"	v	class:TextUtil
+lfProb	pxy/files.py	/^    lfProb = 0.05 $/;"	v	class:TextUtil
+limit	pxy/pxyregress.py	/^    limit = None$/;"	v	class:Killer
+lineLength	pxy/files.py	/^    lineLength = 80$/;"	v	class:FileManager
+linefeed	pxy/files.py	/^    def linefeed(self, pct):$/;"	m	class:TextUtil
+list	pxy/events.py	/^    list = []         # All events, ordered by time$/;"	v	class:EventManager
+loadStaticFiles	pxy/files.py	/^    def loadStaticFiles(self):$/;"	m	class:FileManager
+logDirectory	pxy/pxyregress.py	/^logDirectory = ".\/logs"$/;"	v
+logFile	pxy/pxyregress.py	/^logFile = None$/;"	v
+logFileSetup	pxy/pxyregress.py	/^def logFileSetup():$/;"	f
+longestArgumentString	pxy/console.py	/^    longestArgumentString = 0$/;"	v	class:Command
+longestCommand	pxy/console.py	/^    longestCommand = 0$/;"	v	class:Command
+longestOption	pxy/console.py	/^    longestOption = 0$/;"	v	class:Command
+lowText	pxy/files.py	/^    lowText = ord(' ')$/;"	v	class:TextUtil
+main	proxy.c	/^int main(int argc, char **argv) {$/;"	f
+main	tiny/cgi-bin/adder.c	/^int main(void) {$/;"	f
+main	tiny/tiny-static.c	/^int main(int argc, char **argv) {$/;"	f
+main	tiny/tiny.c	/^int main(int argc, char **argv) {$/;"	f
+makeFileName	pxy/console.py	/^    def makeFileName(self, args):$/;"	m	class:Command
+makeList	pxy/agents.py	/^    def makeList(self):$/;"	m	class:PortFinder
+makeMatchEvent	pxy/events.py	/^    def makeMatchEvent(self, server, uri):$/;"	m	class:EventManager
+maxAge	pxy/agents.py	/^    maxAge = 0.0$/;"	v	class:HeartbeatManager
+maxInterval	pxy/agents.py	/^    maxInterval = 0.0$/;"	v	class:HeartbeatManager
+maxPort	pxy/agents.py	/^    maxPort = 32768$/;"	v	class:PortFinder
+mimeTypes	pxy/agents.py	/^    mimeTypes = {"txt" : "text\/plain",$/;"	v	class:Server
+minPort	pxy/agents.py	/^    minPort = 1024$/;"	v	class:PortFinder
+monitors	pxy/pxydrive.py	/^    monitors = []$/;"	v	class:Driver
+mutex	pxy/agents.py	/^    mutex = None$/;"	v	class:HeartbeatManager
+mutex	pxy/agents.py	/^    mutex = None$/;"	v	class:InstrumentCache
+mutex	pxy/events.py	/^    mutex = None      # To ensure that event list managed properly$/;"	v	class:EventManager
+name	http_parser.h	/^    const char *name;     \/**< the name of the header *\/$/;"	m	struct:header
+names	pxy/agents.py	/^    names = ["none", "request", "response"]$/;"	v	class:Disruption
+newPort	pxy/agents.py	/^    def newPort(self):$/;"	m	class:PortFinder
+open_clientfd	csapp.c	/^int open_clientfd(const char *hostname, const char *port) {$/;"	f
+open_clientfd	tiny/csapp.c	/^int open_clientfd(const char *hostname, const char *port) {$/;"	f
+open_listenfd	csapp.c	/^int open_listenfd(const char *port) {$/;"	f
+open_listenfd	tiny/csapp.c	/^int open_listenfd(const char *port) {$/;"	f
+optionDict	pxy/console.py	/^    optionDict = {} # Integer options, indexed by name.  Each entry is (option, documentation)$/;"	v	class:Command
+outFiles	pxy/console.py	/^    outFiles =  [] # Can write to multiple output files$/;"	v	class:Command
+outFiles	pxy/files.py	/^    outFiles = None$/;"	v	class:Printer
+outMsg	pxy/agents.py	/^    def outMsg(self, msg):$/;"	m	class:RequestGenerator
+outMsg	pxy/agents.py	/^    def outMsg(self, msg):$/;"	m	class:Server
+outMsg	pxy/console.py	/^    def outMsg(self, msg, noreturn = False, overrideQuiet = False):$/;"	m	class:Command
+outMsg	pxy/files.py	/^    def outMsg(self, s, noreturn = False):$/;"	m	class:Printer
+outMsg	pxy/pxyregress.py	/^def outMsg(s):$/;"	f
+panic	pxy/console.py	/^    def panic(self, info, exception):$/;"	m	class:Command
+panic	pxy/files.py	/^    def panic(self, info, exception):$/;"	m	class:Printer
+parse	pxy/agents.py	/^    def parse(self, name):$/;"	m	class:Disruption
+parseLine	pxy/agents.py	/^    def parseLine(self, line):$/;"	m	class:HeaderReader
+parseURL	pxy/agents.py	/^def parseURL(url):$/;"	f
+parse_req	socket_comm.c	/^void parse_req(int cli_connfd,$/;"	f
+parse_result	tiny/tiny-static.c	/^} parse_result;$/;"	t	typeref:enum:__anon5	file:
+parse_result	tiny/tiny.c	/^} parse_result;$/;"	t	typeref:enum:__anon3	file:
+parse_uri	tiny/tiny-static.c	/^parse_result parse_uri(char *uri, char *filename, char *cgiargs) {$/;"	f
+parse_uri	tiny/tiny.c	/^parse_result parse_uri(char *uri, char *filename, char *cgiargs) {$/;"	f
+parser_state	http_parser.h	/^typedef enum parser_state {$/;"	g
+parser_state	http_parser.h	/^} parser_state;$/;"	t	typeref:enum:parser_state
+parser_t	http_parser.h	/^typedef struct parser parser_t;$/;"	t	typeref:struct:parser
+parser_value	http_parser.h	/^typedef enum parser_value {$/;"	g
+parser_value_type	http_parser.h	/^} parser_value_type;$/;"	t	typeref:enum:parser_value
+path	pxy/events.py	/^    path = ""          # Path of relevant file$/;"	v	class:Event
+pendingHeaderLines	pxy/events.py	/^    pendingHeaderLines = []$/;"	v	class:Event
+port	pxy/agents.py	/^    port = None$/;"	v	class:HeartbeatManager
+port	pxy/agents.py	/^    port = None$/;"	v	class:Server
+portLimit	pxy/pxydrive.py	/^    portLimit = 10$/;"	v	class:Driver
+portList	pxy/agents.py	/^    portList = []$/;"	v	class:PortFinder
+portManager	pxy/agents.py	/^    portManager = None$/;"	v	class:Server
+portManager	pxy/pxydrive.py	/^    portManager = None$/;"	v	class:Driver
+portReason	pxy/pxyregress.py	/^portReason = "PORT failure"$/;"	v
+printForms	pxy/files.py	/^    printForms = { '\\t': '<tab>',$/;"	v	class:TextUtil
+printLock	pxy/console.py	/^    printLock = None$/;"	v	class:Command
+printer	pxy/agents.py	/^    printer = None$/;"	v	class:HeartbeatManager
+printer	pxy/agents.py	/^    printer = None$/;"	v	class:PortFinder
+printer	pxy/agents.py	/^    printer = None$/;"	v	class:RequestGenerator
+printer	pxy/agents.py	/^    printer = None$/;"	v	class:Server
+printer	pxy/files.py	/^    printer = None$/;"	v	class:FileManager
+printer	pxy/files.py	/^    printer = None$/;"	v	class:FileMonitor
+process	pxy/pxyregress.py	/^    process = None$/;"	v	class:Killer
+processBeatMessage	pxy/agents.py	/^    def processBeatMessage(self, msg):$/;"	m	class:HeartbeatManager
+prompt	pxy/console.py	/^    prompt = ">"$/;"	v	class:Command
+proxy	pxy/agents.py	/^    proxy = None  # indicated by (host, port)$/;"	v	class:RequestGenerator
+proxyProcess	pxy/pxydrive.py	/^    proxyProcess = None$/;"	v	class:Driver
+purgeDynamicFiles	pxy/files.py	/^    def purgeDynamicFiles(self):$/;"	m	class:FileManager
+purgeGottenFiles	pxy/files.py	/^    def purgeGottenFiles(self):$/;"	m	class:FileManager
+purgeResponseFiles	pxy/files.py	/^    def purgeResponseFiles(self):$/;"	m	class:FileManager
+pxy_rx	socket_comm.c	/^void pxy_rx(int sockfd,$/;"	f
+pxy_tx	socket_comm.c	/^void pxy_tx(int sockfd,$/;"	f
+quietMode	pxy/console.py	/^    quietMode = None # Minimal output printing$/;"	v	class:Command
+randomCharacter	pxy/files.py	/^    def randomCharacter(self, binary):$/;"	m	class:TextUtil
+randomizer	pxy/agents.py	/^    randomizer = None$/;"	v	class:PortFinder
+read	pxy/files.py	/^    def read(self):$/;"	m	class:SocketFile
+readHeader	pxy/agents.py	/^    def readHeader(self, sockFile):$/;"	m	class:HeaderReader
+read_req_line	socket_comm.c	/^void read_req_line( int cli_connfd,$/;"	f
+read_requesthdrs	tiny/tiny-static.c	/^bool read_requesthdrs(rio_t *rp) {$/;"	f
+read_requesthdrs	tiny/tiny.c	/^bool read_requesthdrs(client_info *client, rio_t *rp) {$/;"	f
+readingHeader	pxy/agents.py	/^    readingHeader = False$/;"	v	class:Server
+readlineb	pxy/files.py	/^    def readlineb(self):$/;"	m	class:SocketFile
+receivedHeaderLines	pxy/events.py	/^    receivedHeaderLines = []$/;"	v	class:Event
+record	pxy/agents.py	/^    def record(self, contentId, sequenceId):$/;"	m	class:InstrumentCache
+release	pxy/events.py	/^    def release(self):$/;"	m	class:Event
+report	pxy/agents.py	/^    def report(self):$/;"	m	class:HeartbeatManager
+request	pxy/agents.py	/^    def request(self, event, url, isFetch, isPost):$/;"	m	class:RequestGenerator
+requestCount	pxy/agents.py	/^    requestCount = 0$/;"	v	class:Server
+requestDict	pxy/events.py	/^    requestDict = {}  # Request events, indexed by name$/;"	v	class:EventManager
+requestManager	pxy/pxydrive.py	/^    requestManager = None$/;"	v	class:Driver
+responseDict	pxy/events.py	/^    responseDict = {} # Response events, indexed by name$/;"	v	class:EventManager
+responseFilePath	pxy/files.py	/^    responseFilePath = ".\/response_files"$/;"	v	class:FileManager
+responsePath	pxy/files.py	/^    def responsePath(self, fname):$/;"	m	class:FileManager
+retrievalDict	pxy/agents.py	/^    retrievalDict = {}$/;"	v	class:InstrumentCache
+retryLimit	pxy/pxyregress.py	/^retryLimit = 3$/;"	v
+rio_buf	csapp.h	/^    char rio_buf[RIO_BUFSIZE]; \/* Internal buffer *\/$/;"	m	struct:__anon1
+rio_bufptr	csapp.h	/^    char *rio_bufptr;          \/* Next unread byte in internal buf *\/$/;"	m	struct:__anon1
+rio_cnt	csapp.h	/^    ssize_t rio_cnt;           \/* Unread bytes in internal buf *\/$/;"	m	struct:__anon1
+rio_fd	csapp.h	/^    int rio_fd;                \/* Descriptor for this internal buf *\/$/;"	m	struct:__anon1
+rio_read	csapp.c	/^static ssize_t rio_read(rio_t *rp, char *usrbuf, size_t n) {$/;"	f	file:
+rio_read	tiny/csapp.c	/^static ssize_t rio_read(rio_t *rp, char *usrbuf, size_t n) {$/;"	f	file:
+rio_readinitb	csapp.c	/^void rio_readinitb(rio_t *rp, int fd) {$/;"	f
+rio_readinitb	tiny/csapp.c	/^void rio_readinitb(rio_t *rp, int fd) {$/;"	f
+rio_readlineb	csapp.c	/^ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen) {$/;"	f
+rio_readlineb	tiny/csapp.c	/^ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen) {$/;"	f
+rio_readn	csapp.c	/^ssize_t rio_readn(int fd, void *usrbuf, size_t n) {$/;"	f
+rio_readn	tiny/csapp.c	/^ssize_t rio_readn(int fd, void *usrbuf, size_t n) {$/;"	f
+rio_readnb	csapp.c	/^ssize_t rio_readnb(rio_t *rp, void *usrbuf, size_t n) {$/;"	f
+rio_readnb	tiny/csapp.c	/^ssize_t rio_readnb(rio_t *rp, void *usrbuf, size_t n) {$/;"	f
+rio_t	csapp.h	/^} rio_t;$/;"	t	typeref:struct:__anon1
+rio_writen	csapp.c	/^ssize_t rio_writen(int fd, const void *usrbuf, size_t n) {$/;"	f
+rio_writen	tiny/csapp.c	/^ssize_t rio_writen(int fd, const void *usrbuf, size_t n) {$/;"	f
+run	pxy/agents.py	/^    def run(self):$/;"	m	class:Server
+run	pxy/console.py	/^    def run(self, commandList = []):$/;"	m	class:Command
+run	pxy/files.py	/^    def run(self):$/;"	m	class:FileMonitor
+run	pxy/pxydrive.py	/^    def run(self, commandList = []):$/;"	m	class:Driver
+run	pxy/pxydrive.py	/^def run(name, args):$/;"	f
+run	pxy/pxyregress.py	/^def run(name, args):$/;"	f
+runTest	pxy/pxyregress.py	/^def runTest(proxyPath, testPath, generateLog = True, limit = None):$/;"	f
+running	pxy/agents.py	/^    running = False$/;"	v	class:HeartbeatManager
+running	pxy/agents.py	/^    running = True$/;"	v	class:Server
+running	pxy/console.py	/^    running = True$/;"	v	class:Command
+running	pxy/events.py	/^    running = True$/;"	v	class:EventManager
+running	pxy/files.py	/^    running = True$/;"	v	class:FileMonitor
+scheduleDisruption	pxy/agents.py	/^    def scheduleDisruption(self, dis):$/;"	m	class:RequestGenerator
+scheduleDisruption	pxy/agents.py	/^    def scheduleDisruption(self, dis):$/;"	m	class:Server
+sendResponse	pxy/agents.py	/^    def sendResponse(self, event, header, sockFile, body = "", localFile = None):$/;"	m	class:Server
+sentHeaderLines	pxy/events.py	/^    sentHeaderLines = []$/;"	v	class:Event
+sequenceId	pxy/agents.py	/^    def sequenceId(self):$/;"	m	class:Server
+sequenceNumber	pxy/agents.py	/^    sequenceNumber = 0$/;"	v	class:Server
+serv	tiny/tiny-static.c	/^    char serv[SERVLEN];         \/\/ Client service (port)$/;"	m	struct:__anon4	file:
+serv	tiny/tiny.c	/^    char serv[SERVLEN];         \/\/ Client service (port)$/;"	m	struct:__anon2	file:
+serve	pxy/agents.py	/^    def serve(self):$/;"	m	class:HeartbeatManager
+serve	tiny/tiny-static.c	/^void serve(client_info *client) {$/;"	f
+serve	tiny/tiny.c	/^void serve(client_info *client) {$/;"	f
+serve_dynamic	tiny/tiny.c	/^void serve_dynamic(int fd, char *filename, char *cgiargs) {$/;"	f
+serve_static	tiny/tiny-static.c	/^void serve_static(int fd, char *filename, int filesize) {$/;"	f
+serve_static	tiny/tiny.c	/^void serve_static(int fd, char *filename, int filesize) {$/;"	f
+server	pxy/events.py	/^    server = ""        # Id of server$/;"	v	class:Event
+serverSocket	pxy/agents.py	/^    serverSocket = None$/;"	v	class:HeartbeatManager
+serverThread	pxy/agents.py	/^    serverThread = None$/;"	v	class:HeartbeatManager
+servers	pxy/pxydrive.py	/^    servers = {}$/;"	v	class:Driver
+set	pxy/console.py	/^    def set(self, val):$/;"	m	class:Option
+setTag	pxy/events.py	/^    def setTag(self, tag, reason = None):$/;"	m	class:Event
+showCharacter	pxy/files.py	/^    def showCharacter(self, c, hexOnly):$/;"	m	class:TextUtil
+showLine	pxy/files.py	/^def showLine(line):$/;"	f
+shutdown	pxy/events.py	/^    def shutdown(self):$/;"	m	class:EventManager
+shutdown	pxy/files.py	/^    def shutdown(self):$/;"	m	class:FileMonitor
+shutdown	pxy/files.py	/^    def shutdown(self):$/;"	m	class:SocketFile
+shutdownFlag	pxy/files.py	/^    shutdownFlag = False$/;"	v	class:SocketFile
+sio_assert	csapp.h	80;"	d
+sio_dprintf	csapp.c	/^ssize_t sio_dprintf(int fileno, const char *fmt, ...) {$/;"	f
+sio_dprintf	tiny/csapp.c	/^ssize_t sio_dprintf(int fileno, const char *fmt, ...) {$/;"	f
+sio_eprintf	csapp.c	/^ssize_t sio_eprintf(const char *fmt, ...) {$/;"	f
+sio_eprintf	tiny/csapp.c	/^ssize_t sio_eprintf(const char *fmt, ...) {$/;"	f
+sio_printf	csapp.c	/^ssize_t sio_printf(const char *fmt, ...) {$/;"	f
+sio_printf	tiny/csapp.c	/^ssize_t sio_printf(const char *fmt, ...) {$/;"	f
+sio_reverse	csapp.c	/^static void sio_reverse(char s[], size_t len) {$/;"	f	file:
+sio_reverse	tiny/csapp.c	/^static void sio_reverse(char s[], size_t len) {$/;"	f	file:
+sio_vdprintf	csapp.c	/^ssize_t sio_vdprintf(int fileno, const char *fmt, va_list argp) {$/;"	f
+sio_vdprintf	tiny/csapp.c	/^ssize_t sio_vdprintf(int fileno, const char *fmt, va_list argp) {$/;"	f
+sock	pxy/agents.py	/^    sock = None$/;"	v	class:Server
+sock	pxy/files.py	/^    sock = None$/;"	v	class:SocketFile
+sockFile	pxy/agents.py	/^    sockFile = None$/;"	v	class:HeartbeatManager
+sockFile	pxy/events.py	/^    sockFile = None    # Connected socket for defered request$/;"	v	class:Event
+sourceFilePath	pxy/files.py	/^    sourceFilePath = ".\/source_files"$/;"	v	class:FileManager
+sourcePath	pxy/files.py	/^    def sourcePath(self, fname):$/;"	m	class:FileManager
+spaceCharacters	pxy/files.py	/^spaceCharacters = " \\t\\r\\n"$/;"	v
+spaceMap	pxy/files.py	/^spaceMap = { ' '  : ' '  ,$/;"	v
+startRequest	pxy/agents.py	/^    def startRequest(self, event, url, isFetch, isPost):$/;"	m	class:RequestGenerator
+startShutdown	pxy/events.py	/^    def startShutdown(self):$/;"	m	class:Event
+startTime	pxy/console.py	/^    startTime = None$/;"	v	class:Command
+startTime	pxy/events.py	/^    startTime = None  # Time of day when started$/;"	v	class:EventManager
+staticDirectories	pxy/files.py	/^    staticDirectories = ["images", "icons"]$/;"	v	class:FileManager
+staticFiles	pxy/files.py	/^    staticFiles = {}$/;"	v	class:FileManager
+statistics	pxy/agents.py	/^    def statistics(self, printer):$/;"	m	class:InstrumentCache
+stop	pxy/agents.py	/^    def stop(self):$/;"	m	class:HeartbeatManager
+stop	pxy/agents.py	/^    def stop(self):$/;"	m	class:Server
+stop	pxy/events.py	/^    def stop(self):$/;"	m	class:EventManager
+str	csapp.c	/^    const char *str; \/\/ String to output$/;"	m	struct:_format_data	file:
+str	tiny/csapp.c	/^    const char *str; \/\/ String to output$/;"	m	struct:_format_data	file:
+stretch	pxy/pxydrive.py	/^    stretch = None$/;"	v	class:Driver
+stretch	pxy/pxyregress.py	/^stretch = None$/;"	v
+strict	pxy/agents.py	/^    strict = None$/;"	v	class:HeaderReader
+strict	pxy/agents.py	/^    strict = None$/;"	v	class:RequestGenerator
+strict	pxy/agents.py	/^    strict = None$/;"	v	class:Server
+strict	pxy/pxydrive.py	/^    strict = None$/;"	v	class:Driver
+stringList	pxy/events.py	/^    def stringList(self):$/;"	m	class:EventManager
+subprocess_setup	pxy/pxydrive.py	/^                def subprocess_setup():$/;"	f	function:Driver.doProxy
+tag	pxy/events.py	/^    tag = ""           $/;"	v	class:Event
+tags	pxy/agents.py	/^    tags = {}$/;"	v	class:HTTPStatus
+terminate	pxy/pxyregress.py	/^    def terminate(self):$/;"	m	class:Killer
+terminateTimer	pxy/pxyregress.py	/^    terminateTimer = None$/;"	v	class:Killer
+testDirectory	pxy/pxyregress.py	/^testDirectory = "tests"$/;"	v
+testPath	pxy/files.py	/^    def testPath(self, path):$/;"	m	class:FileManager
+tevent	pxy/events.py	/^    tevent = None      # Threading event to defer response events$/;"	v	class:Event
+text	pxy/events.py	/^    text = ""          # Diagnostic text$/;"	v	class:Event
+textHandler	pxy/files.py	/^    textHandler = None$/;"	v	class:FileManager
+thread	pxy/agents.py	/^    thread = None$/;"	v	class:Server
+thread	pxy/events.py	/^    thread = None      # Thread handling event$/;"	v	class:Event
+thread	pxy/files.py	/^    thread = None$/;"	v	class:FileMonitor
+threadId	pxy/agents.py	/^    threadId = None$/;"	v	class:Beat
+time	pxy/events.py	/^    time = 0.0         # Seconds relative to start of event manager$/;"	v	class:Event
+timeStamp	pxy/agents.py	/^    timeStamp = None$/;"	v	class:Beat
+timedOut	pxy/pxyregress.py	/^    timedOut = False$/;"	v	class:Killer
+timeout	pxy/pxydrive.py	/^    timeout = None$/;"	v	class:Driver
+trace	pxy/pxydrive.py	/^    def trace(self, rid):$/;"	m	class:Driver
+uintmax_to_string	csapp.c	/^static size_t uintmax_to_string(uintmax_t v, char s[], unsigned char b) {$/;"	f	file:
+uintmax_to_string	tiny/csapp.c	/^static size_t uintmax_to_string(uintmax_t v, char s[], unsigned char b) {$/;"	f	file:
+uri	pxy/events.py	/^    uri = ""           # URI of request$/;"	v	class:Event
+url	pxy/events.py	/^    url = None         # Request URL$/;"	v	class:Event
+usage	pxy/pxydrive.py	/^def usage(name):$/;"	f
+usage	pxy/pxyregress.py	/^def usage(name):$/;"	f
+value	http_parser.h	/^    const char *value;    \/**< the value of the header *\/$/;"	m	struct:header
+value	pxy/console.py	/^    value = 0$/;"	v	class:Option
+verbose	pxy/agents.py	/^    verbose = None$/;"	v	class:RequestGenerator
+verbose	pxy/agents.py	/^    verbose = None$/;"	v	class:Server
+verbose	pxy/pxydrive.py	/^    verbose = None$/;"	v	class:Driver
+wait	pxy/events.py	/^    def wait(self, timeout = None):$/;"	m	class:Event
+waitActive	pxy/events.py	/^    def waitActive(self, waitingEvents, timeout):$/;"	m	class:EventManager
+waitEvent	pxy/events.py	/^    waitEvent = None$/;"	v	class:EventManager
+waitForExit	pxy/agents.py	/^    def waitForExit(self):$/;"	m	class:Server
+waitingEvents	pxy/events.py	/^    waitingEvents = {}   # Events that must be completed before returning to wait command$/;"	v	class:EventManager
+warnMsg	pxy/agents.py	/^    def warnMsg(self, msg):$/;"	m	class:RequestGenerator
+warnMsg	pxy/agents.py	/^    def warnMsg(self, msg):$/;"	m	class:Server
+warnMsg	pxy/console.py	/^    def warnMsg(self, msg):$/;"	m	class:Command
+warnMsg	pxy/files.py	/^    def warnMsg(self, s, noreturn = False):$/;"	m	class:Printer
+warning	pxy/events.py	/^    def warning(self, text = None):$/;"	m	class:Event
+wrapPath	pxy/pxyregress.py	/^def wrapPath(path):$/;"	f
+wrappedFinishRequest	pxy/agents.py	/^    def wrappedFinishRequest(self, event = None):$/;"	m	class:RequestGenerator
+wrappedHandleConnection	pxy/agents.py	/^    def wrappedHandleConnection(self, sockFile = None):$/;"	m	class:Server
+wrappedRun	pxy/agents.py	/^    def wrappedRun(self):$/;"	m	class:Server
+wrapperLibrary	pxy/pxydrive.py	/^wrapperLibrary = "wrapper.so"$/;"	v
+write	pxy/files.py	/^    def write(self, buf):$/;"	m	class:SocketFile
+write_digits	csapp.c	/^static size_t write_digits(uintmax_t v, char s[], unsigned char b) {$/;"	f	file:
+write_digits	tiny/csapp.c	/^static size_t write_digits(uintmax_t v, char s[], unsigned char b) {$/;"	f	file:
+zeroProb	pxy/files.py	/^    zeroProb = 0.05$/;"	v	class:TextUtil

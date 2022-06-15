@@ -1,0 +1,1856 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:4142
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D11-many-blocks1.cmd'
+># Cache should be able to hold many small blocks
+>serve s1 s2
+Server s1 running at ece011.ece.local.cmu.edu:9472
+Server s2 running at ece011.ece.local.cmu.edu:32101
+># 50 * 10K = 500K.  The cache can hold all of these
+>generate random-text00.txt 10K
+>generate random-text01.txt 10K
+>generate random-text02.txt 10K
+>generate random-text03.txt 10K
+>generate random-text04.txt 10K
+>generate random-text05.txt 10K
+>generate random-text06.txt 10K
+>generate random-text07.txt 10K
+>generate random-text08.txt 10K
+>generate random-text09.txt 10K
+>generate random-text10.txt 10K
+>generate random-text11.txt 10K
+>generate random-text12.txt 10K
+>generate random-text13.txt 10K
+>generate random-text14.txt 10K
+>generate random-text15.txt 10K
+>generate random-text16.txt 10K
+>generate random-text17.txt 10K
+>generate random-text18.txt 10K
+>generate random-text19.txt 10K
+>generate random-text20.txt 10K
+>generate random-text21.txt 10K
+>generate random-text22.txt 10K
+>generate random-text23.txt 10K
+>generate random-text24.txt 10K
+>generate random-text25.txt 10K
+>generate random-text26.txt 10K
+>generate random-text27.txt 10K
+>generate random-text28.txt 10K
+>generate random-text29.txt 10K
+>generate random-text30.txt 10K
+>generate random-text31.txt 10K
+>generate random-text32.txt 10K
+>generate random-text33.txt 10K
+>generate random-text34.txt 10K
+>generate random-text35.txt 10K
+>generate random-text36.txt 10K
+>generate random-text37.txt 10K
+>generate random-text38.txt 10K
+>generate random-text39.txt 10K
+>generate random-text40.txt 10K
+>generate random-text41.txt 10K
+>generate random-text42.txt 10K
+>generate random-text43.txt 10K
+>generate random-text44.txt 10K
+>generate random-text45.txt 10K
+>generate random-text46.txt 10K
+>generate random-text47.txt 10K
+>generate random-text48.txt 10K
+>generate random-text49.txt 10K
+># Generate request/response that will cause sequential proxy to fail
+>request rx0 random-text00.txt s2
+Client: Requesting '/random-text00.txt' from ece011.ece.local.cmu.edu:32101
+>request rx1 random-text01.txt s2
+Client: Requesting '/random-text01.txt' from ece011.ece.local.cmu.edu:32101
+>wait *
+>respond rx1 rx0
+Server responded to request rx1 with status ok
+Server responded to request rx0 with status ok
+>wait *
+>check rx0
+Request rx0 yielded expected status 'ok'
+>check rx1
+Request rx1 yielded expected status 'ok'
+># These should all be cached
+>fetch f00 random-text00.txt s1
+Client: Fetching '/random-text00.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f01 random-text01.txt s1
+Client: Fetching '/random-text01.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f02 random-text02.txt s1
+Client: Fetching '/random-text02.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f03 random-text03.txt s1
+Client: Fetching '/random-text03.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f04 random-text04.txt s1
+Client: Fetching '/random-text04.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f05 random-text05.txt s1
+Client: Fetching '/random-text05.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f06 random-text06.txt s1
+Client: Fetching '/random-text06.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rx0
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+>fetch f07 random-text07.txt s1
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:32101/random-text00.txt over 0 blocks
+Client: Fetching '/random-text07.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32101
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text00.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:32101
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rx0
+Proxy stdout: Response: Deferred
+>fetch f08 random-text08.txt s1
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Client: Fetching '/random-text08.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rx1
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:32101/random-text01.txt over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:32101
+>fetch f09 random-text09.txt s1
+Client: Fetching '/random-text09.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text01.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:32101
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+>wait *
+Proxy stdout: Request-ID: rx1
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:32101/random-text01.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:32101/random-text00.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f00
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text00.txt over 2 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text00.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f00
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text01.txt over 2 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text01.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text02.txt over 2 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text00.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text02.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text01.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text03.txt over 4 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text02.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text03.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text04.txt over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text04.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+>check f00
+Request f00 yielded expected status 'ok'
+>check f01
+Request f01 yielded expected status 'ok'
+>check f02
+Request f02 yielded expected status 'ok'
+>check f03
+Request f03 yielded expected status 'ok'
+>check f04
+Request f04 yielded expected status 'ok'
+>check f05
+Request f05 yielded expected status 'ok'
+>check f06
+Request f06 yielded expected status 'ok'
+>check f07
+Request f07 yielded expected status 'ok'
+>check f08
+Request f08 yielded expected status 'ok'
+>check f09
+Request f09 yielded expected status 'ok'
+># These should all be cached and not cause any evictions
+>fetch f10 random-text10.txt s1
+Client: Fetching '/random-text10.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f11 random-text11.txt s1
+Client: Fetching '/random-text11.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f12 random-text12.txt s1
+Client: Fetching '/random-text12.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text03.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+>fetch f13 random-text13.txt s1
+Client: Fetching '/random-text13.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text05.txt over 6 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text05.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f05
+>fetch f14 random-text14.txt s1
+Proxy stdout: Response: Immediate
+Client: Fetching '/random-text14.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text04.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+>fetch f15 random-text15.txt s1
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text06.txt over 7 blocks
+Client: Fetching '/random-text15.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text06.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+>fetch f16 random-text16.txt s1
+Client: Fetching '/random-text16.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+>fetch f17 random-text17.txt s1
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f07
+Client: Fetching '/random-text17.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text07.txt over 7 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+>fetch f18 random-text18.txt s1
+Proxy stdout: =======================
+Client: Fetching '/random-text18.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text07.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f07
+>fetch f19 random-text19.txt s1
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Client: Fetching '/random-text19.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text08.txt over 7 blocks
+>wait *
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text05.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text06.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text08.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text07.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text09.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text09.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text08.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text09.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f10
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text10.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text10.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f10
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f11
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text11.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text11.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f11
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f12
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text12.txt over 12 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text10.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text12.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f12
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f13
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text13.txt over 13 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text11.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text13.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f13
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f14
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text14.txt over 14 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text14.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f14
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text12.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f15
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text15.txt over 15 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text15.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f15
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text13.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f16
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text16.txt over 16 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text16.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f16
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text14.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f17
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text17.txt over 17 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text15.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text17.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f17
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text16.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f18
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text18.txt over 19 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+>check f10
+Request f10 yielded expected status 'ok'
+>check f11
+Request f11 yielded expected status 'ok'
+>check f12
+Request f12 yielded expected status 'ok'
+>check f13
+Request f13 yielded expected status 'ok'
+>check f14
+Request f14 yielded expected status 'ok'
+>check f15
+Request f15 yielded expected status 'ok'
+>check f16
+Request f16 yielded expected status 'ok'
+>check f17
+Request f17 yielded expected status 'ok'
+>check f18
+Request f18 yielded expected status 'ok'
+>check f19
+Request f19 yielded expected status 'ok'
+># These should all be cached and not cause any evictions
+>fetch f20 random-text20.txt s1
+Client: Fetching '/random-text20.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f21 random-text21.txt s1
+Client: Fetching '/random-text21.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f22 random-text22.txt s1
+Client: Fetching '/random-text22.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f23 random-text23.txt s1
+Client: Fetching '/random-text23.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f24 random-text24.txt s1
+Client: Fetching '/random-text24.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f25 random-text25.txt s1
+Client: Fetching '/random-text25.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f26 random-text26.txt s1
+Proxy stdout: =======================
+Client: Fetching '/random-text26.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text18.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+>fetch f27 random-text27.txt s1
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Client: Fetching '/random-text27.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f18
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+>fetch f28 random-text28.txt s1
+Proxy stdout: Request-ID: f19
+Client: Fetching '/random-text28.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text19.txt over 19 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+>fetch f29 random-text29.txt s1
+Proxy stdout: GET /random-text19.txt HTTP/1.0
+Client: Fetching '/random-text29.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+>wait *
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f19
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text18.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text17.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text19.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f20
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text20.txt over 22 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text20.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f20
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f21
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text21.txt over 22 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text21.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f21
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f22
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text22.txt over 22 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text20.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text22.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f22
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f23
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text23.txt over 23 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text21.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text23.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f23
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text22.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text23.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f24
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text24.txt over 26 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text24.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f24
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f25
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>check f20
+Request f20 yielded expected status 'ok'
+>check f21
+Request f21 yielded expected status 'ok'
+>check f22
+Request f22 yielded expected status 'ok'
+>check f23
+Request f23 yielded expected status 'ok'
+>check f24
+Request f24 yielded expected status 'ok'
+>check f25
+Request f25 yielded expected status 'ok'
+>check f26
+Request f26 yielded expected status 'ok'
+>check f27
+Request f27 yielded expected status 'ok'
+>check f28
+Request f28 yielded expected status 'ok'
+>check f29
+Request f29 yielded expected status 'ok'
+># These should all be cached and not cause any evictions
+>fetch f30 random-text30.txt s1
+Client: Fetching '/random-text30.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f31 random-text31.txt s1
+Client: Fetching '/random-text31.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f32 random-text32.txt s1
+Client: Fetching '/random-text32.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text25.txt over 26 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+>fetch f33 random-text33.txt s1
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text25.txt HTTP/1.0
+Client: Fetching '/random-text33.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f25
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>fetch f34 random-text34.txt s1
+Proxy stdout: 
+Client: Fetching '/random-text34.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f26
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text26.txt over 26 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+>fetch f35 random-text35.txt s1
+Client: Fetching '/random-text35.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text26.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+>fetch f36 random-text36.txt s1
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Client: Fetching '/random-text36.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f26
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+>fetch f37 random-text37.txt s1
+Client: Fetching '/random-text37.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text24.txt
+Proxy stdout: cli ---> pxy      srv:
+>fetch f38 random-text38.txt s1
+Proxy stdout: Request-ID: f27
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Client: Fetching '/random-text38.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text27.txt over 27 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text27.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+>fetch f39 random-text39.txt s1
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Client: Fetching '/random-text39.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f27
+Proxy stdout: Response: Immediate
+>wait *
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text25.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text26.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f28
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text28.txt over 29 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text27.txt
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text28.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f28
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f29
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text29.txt over 30 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text29.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f29
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text28.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text29.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f30
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text30.txt over 32 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text30.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f30
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f31
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text31.txt over 32 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text31.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f31
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text30.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f32
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text32.txt over 33 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text31.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text32.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f32
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f33
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text33.txt over 34 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text33.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f33
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f34
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text34.txt over 34 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text32.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text34.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f34
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f35
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text35.txt over 35 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text33.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text35.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f35
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f36
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text36.txt over 36 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text36.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f36
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f37
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text37.txt over 36 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text34.txt
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text37.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f37
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f38
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text38.txt over 37 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text35.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text38.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+>check f30
+Request f30 yielded expected status 'ok'
+>check f31
+Request f31 yielded expected status 'ok'
+>check f32
+Request f32 yielded expected status 'ok'
+>check f33
+Request f33 yielded expected status 'ok'
+>check f34
+Request f34 yielded expected status 'ok'
+>check f35
+Request f35 yielded expected status 'ok'
+>check f36
+Request f36 yielded expected status 'ok'
+>check f37
+Request f37 yielded expected status 'ok'
+>check f38
+Request f38 yielded expected status 'ok'
+>check f39
+Request f39 yielded expected status 'ok'
+># These should all be cached and not cause any evictions
+>fetch f40 random-text40.txt s1
+Client: Fetching '/random-text40.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f41 random-text41.txt s1
+Client: Fetching '/random-text41.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f42 random-text42.txt s1
+Client: Fetching '/random-text42.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f43 random-text43.txt s1
+Client: Fetching '/random-text43.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f44 random-text44.txt s1
+Client: Fetching '/random-text44.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f45 random-text45.txt s1
+Client: Fetching '/random-text45.txt' from ece011.ece.local.cmu.edu:9472
+>fetch f46 random-text46.txt s1
+Client: Fetching '/random-text46.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f38
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+>fetch f47 random-text47.txt s1
+Client: Fetching '/random-text47.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text36.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f39
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>fetch f48 random-text48.txt s1
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text39.txt over 39 blocks
+Client: Fetching '/random-text48.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+>fetch f49 random-text49.txt s1
+Client: Fetching '/random-text49.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: GET /random-text39.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+>wait *
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f39
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text37.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text38.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text39.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f40
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text40.txt over 42 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text40.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f40
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f41
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text41.txt over 42 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text41.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f41
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f42
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text42.txt over 42 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text42.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f42
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text40.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f43
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text43.txt over 43 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text41.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text43.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f43
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f44
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text44.txt over 44 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text42.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text43.txt
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text44.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f44
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f45
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text45.txt over 46 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+>check f40
+Request f40 yielded expected status 'ok'
+>check f41
+Request f41 yielded expected status 'ok'
+>check f42
+Request f42 yielded expected status 'ok'
+>check f43
+Request f43 yielded expected status 'ok'
+>check f44
+Request f44 yielded expected status 'ok'
+>check f45
+Request f45 yielded expected status 'ok'
+>check f46
+Request f46 yielded expected status 'ok'
+>check f47
+Request f47 yielded expected status 'ok'
+>check f48
+Request f48 yielded expected status 'ok'
+>check f49
+Request f49 yielded expected status 'ok'
+># These should all be in the cache
+>request r00 random-text00.txt s1
+Client: Requesting '/random-text00.txt' from ece011.ece.local.cmu.edu:9472
+>request r01 random-text01.txt s1
+Client: Requesting '/random-text01.txt' from ece011.ece.local.cmu.edu:9472
+>request r02 random-text02.txt s1
+Client: Requesting '/random-text02.txt' from ece011.ece.local.cmu.edu:9472
+>request r03 random-text03.txt s1
+Client: Requesting '/random-text03.txt' from ece011.ece.local.cmu.edu:9472
+>request r04 random-text04.txt s1
+Client: Requesting '/random-text04.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+>request r05 random-text05.txt s1
+Client: Requesting '/random-text05.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text45.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f45
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+>request r06 random-text06.txt s1
+Client: Requesting '/random-text06.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text44.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f46
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text46.txt over 47 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text46.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+>request r07 random-text07.txt s1
+Proxy stdout: Connection: close
+Client: Requesting '/random-text07.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f46
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f47
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text47.txt over 47 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+>request r08 random-text08.txt s1
+Client: Requesting '/random-text08.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text47.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f47
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+>request r09 random-text09.txt s1
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text45.txt
+Proxy stdout: cli ---> pxy      srv:
+Client: Requesting '/random-text09.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Request-ID: f48
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+>wait *
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text48.txt over 48 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text46.txt
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text48.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f48
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f49
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text49.txt over 49 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:9472
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text49.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:9472
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f49
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text47.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text48.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:9472/random-text49.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r00
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text00.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text00.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r01
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text01.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text01.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r02
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text02.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text02.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r03
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text03.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text03.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r04
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text04.txt over 52 blocks
+>check r00
+Request r00 yielded expected status 'ok'
+>check r01
+Request r01 yielded expected status 'ok'
+>check r02
+Request r02 yielded expected status 'ok'
+>check r03
+Request r03 yielded expected status 'ok'
+>check r04
+Request r04 yielded expected status 'ok'
+>check r05
+Request r05 yielded expected status 'ok'
+>check r06
+Request r06 yielded expected status 'ok'
+>check r07
+Request r07 yielded expected status 'ok'
+>check r08
+Request r08 yielded expected status 'ok'
+>check r09
+Request r09 yielded expected status 'ok'
+># These should all be in the cache
+>request r10 random-text10.txt s1
+Client: Requesting '/random-text10.txt' from ece011.ece.local.cmu.edu:9472
+>request r11 random-text11.txt s1
+Client: Requesting '/random-text11.txt' from ece011.ece.local.cmu.edu:9472
+>request r12 random-text12.txt s1
+Client: Requesting '/random-text12.txt' from ece011.ece.local.cmu.edu:9472
+>request r13 random-text13.txt s1
+Client: Requesting '/random-text13.txt' from ece011.ece.local.cmu.edu:9472
+>request r14 random-text14.txt s1
+Client: Requesting '/random-text14.txt' from ece011.ece.local.cmu.edu:9472
+>request r15 random-text15.txt s1
+Client: Requesting '/random-text15.txt' from ece011.ece.local.cmu.edu:9472
+>request r16 random-text16.txt s1
+Client: Requesting '/random-text16.txt' from ece011.ece.local.cmu.edu:9472
+>request r17 random-text17.txt s1
+Client: Requesting '/random-text17.txt' from ece011.ece.local.cmu.edu:9472
+>request r18 random-text18.txt s1
+Client: Requesting '/random-text18.txt' from ece011.ece.local.cmu.edu:9472
+>request r19 random-text19.txt s1
+Client: Requesting '/random-text19.txt' from ece011.ece.local.cmu.edu:9472
+>wait *
+>check r10
+Request r10 yielded expected status 'ok'
+>check r11
+Request r11 yielded expected status 'ok'
+>check r12
+Request r12 yielded expected status 'ok'
+>check r13
+Request r13 yielded expected status 'ok'
+>check r14
+Request r14 yielded expected status 'ok'
+>check r15
+Request r15 yielded expected status 'ok'
+>check r16
+Request r16 yielded expected status 'ok'
+>check r17
+Request r17 yielded expected status 'ok'
+>check r18
+Request r18 yielded expected status 'ok'
+>check r19
+Request r19 yielded expected status 'ok'
+># These should all be in the cache
+>request r20 random-text20.txt s1
+Client: Requesting '/random-text20.txt' from ece011.ece.local.cmu.edu:9472
+>request r21 random-text21.txt s1
+Client: Requesting '/random-text21.txt' from ece011.ece.local.cmu.edu:9472
+>request r22 random-text22.txt s1
+Client: Requesting '/random-text22.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text04.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r05
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text05.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text05.txt returned FOUND
+>request r23 random-text23.txt s1
+Client: Requesting '/random-text23.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r06
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text06.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text06.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r07
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text07.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text07.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r08
+>request r24 random-text24.txt s1
+Client: Requesting '/random-text24.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text08.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text08.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r09
+>request r25 random-text25.txt s1
+Proxy stdout: Response: Deferred
+Client: Requesting '/random-text25.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text09.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text09.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+>request r26 random-text26.txt s1
+Client: Requesting '/random-text26.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Request-ID: r10
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text10.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text10.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+>request r27 random-text27.txt s1
+Proxy stdout: Request-ID: r11
+Client: Requesting '/random-text27.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text11.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text11.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+>request r28 random-text28.txt s1
+Client: Requesting '/random-text28.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Request-ID: r12
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text12.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text12.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r13
+Proxy stdout: Response: Deferred
+>request r29 random-text29.txt s1
+Proxy stdout: 
+Client: Requesting '/random-text29.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text13.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text13.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r14
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text14.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text14.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r15
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+>wait *
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text15.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text15.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r16
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text16.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text16.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r17
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text17.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text17.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r18
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text18.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text18.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r19
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text19.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text19.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r20
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text20.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text20.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r21
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+>check r20
+Request r20 yielded expected status 'ok'
+>check r21
+Request r21 yielded expected status 'ok'
+>check r22
+Request r22 yielded expected status 'ok'
+>check r23
+Request r23 yielded expected status 'ok'
+>check r24
+Request r24 yielded expected status 'ok'
+>check r25
+Request r25 yielded expected status 'ok'
+>check r26
+Request r26 yielded expected status 'ok'
+>check r27
+Request r27 yielded expected status 'ok'
+>check r28
+Request r28 yielded expected status 'ok'
+>check r29
+Request r29 yielded expected status 'ok'
+># These should all be in the cache
+>request r30 random-text30.txt s1
+Client: Requesting '/random-text30.txt' from ece011.ece.local.cmu.edu:9472
+>request r31 random-text31.txt s1
+Client: Requesting '/random-text31.txt' from ece011.ece.local.cmu.edu:9472
+>request r32 random-text32.txt s1
+Client: Requesting '/random-text32.txt' from ece011.ece.local.cmu.edu:9472
+>request r33 random-text33.txt s1
+Client: Requesting '/random-text33.txt' from ece011.ece.local.cmu.edu:9472
+>request r34 random-text34.txt s1
+Client: Requesting '/random-text34.txt' from ece011.ece.local.cmu.edu:9472
+>request r35 random-text35.txt s1
+Client: Requesting '/random-text35.txt' from ece011.ece.local.cmu.edu:9472
+>request r36 random-text36.txt s1
+Client: Requesting '/random-text36.txt' from ece011.ece.local.cmu.edu:9472
+>request r37 random-text37.txt s1
+Client: Requesting '/random-text37.txt' from ece011.ece.local.cmu.edu:9472
+>request r38 random-text38.txt s1
+Client: Requesting '/random-text38.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text21.txt over 52 blocks
+>request r39 random-text39.txt s1
+Client: Requesting '/random-text39.txt' from ece011.ece.local.cmu.edu:9472
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text21.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r22
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+>wait *
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text22.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text22.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r23
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text23.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text23.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r24
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text24.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text24.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r25
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text25.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text25.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r26
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text26.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text26.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r27
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text27.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text27.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r28
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text28.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text28.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r29
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text29.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text29.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r30
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text30.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text30.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r31
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text31.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text31.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r32
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text32.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text32.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r33
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text33.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text33.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r34
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text34.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text34.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r35
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text35.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text35.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r36
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text36.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text36.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r37
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text37.txt over 52 blocks
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:9472/random-text37.txt returned FOUND
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r38
+>check r30
+Request r30 yielded expected status 'ok'
+>check r31
+Request r31 yielded expected status 'ok'
+>check r32
+Request r32 yielded expected status 'ok'
+>check r33
+Request r33 yielded expected status 'ok'
+>check r34
+Request r34 yielded expected status 'ok'
+>check r35
+Request r35 yielded expected status 'ok'
+>check r36
+Request r36 yielded expected status 'ok'
+>check r37
+Request r37 yielded expected status 'ok'
+>check r38
+Request r38 yielded expected status 'ok'
+>check r39
+Request r39 yielded expected status 'ok'
+># These should all be in the cache
+>request r40 random-text40.txt s1
+Client: Requesting '/random-text40.txt' from ece011.ece.local.cmu.edu:9472
+>request r41 random-text41.txt s1
+Client: Requesting '/random-text41.txt' from ece011.ece.local.cmu.edu:9472
+>request r42 random-text42.txt s1
+Client: Requesting '/random-text42.txt' from ece011.ece.local.cmu.edu:9472
+>request r43 random-text43.txt s1
+Client: Requesting '/random-text43.txt' from ece011.ece.local.cmu.edu:9472
+>request r44 random-text44.txt s1
+Client: Requesting '/random-text44.txt' from ece011.ece.local.cmu.edu:9472
+>request r45 random-text45.txt s1
+Client: Requesting '/random-text45.txt' from ece011.ece.local.cmu.edu:9472
+>request r46 random-text46.txt s1
+Client: Requesting '/random-text46.txt' from ece011.ece.local.cmu.edu:9472
+>request r47 random-text47.txt s1
+Client: Requesting '/random-text47.txt' from ece011.ece.local.cmu.edu:9472
+>request r48 random-text48.txt s1
+Client: Requesting '/random-text48.txt' from ece011.ece.local.cmu.edu:9472
+>request r49 random-text49.txt s1
+Client: Requesting '/random-text49.txt' from ece011.ece.local.cmu.edu:9472
+>wait *
+>check r40
+Request r40 yielded expected status 'ok'
+>check r41
+Request r41 yielded expected status 'ok'
+>check r42
+Request r42 yielded expected status 'ok'
+>check r43
+Request r43 yielded expected status 'ok'
+>check r44
+Request r44 yielded expected status 'ok'
+>check r45
+Request r45 yielded expected status 'ok'
+>check r46
+Request r46 yielded expected status 'ok'
+>check r47
+Request r47 yielded expected status 'ok'
+>check r48
+Request r48 yielded expected status 'ok'
+>check r49
+Request r49 yielded expected status 'ok'
+>delete random-text00.txt
+>delete random-text01.txt
+>delete random-text02.txt
+>delete random-text03.txt
+>delete random-text04.txt
+>delete random-text05.txt
+>delete random-text06.txt
+>delete random-text07.txt
+>delete random-text08.txt
+>delete random-text09.txt
+>delete random-text10.txt
+>delete random-text11.txt
+>delete random-text12.txt
+>delete random-text13.txt
+>delete random-text14.txt
+>delete random-text15.txt
+>delete random-text16.txt
+>delete random-text17.txt
+>delete random-text18.txt
+>delete random-text19.txt
+>delete random-text20.txt
+>delete random-text21.txt
+>delete random-text22.txt
+>delete random-text23.txt
+>delete random-text24.txt
+>delete random-text25.txt
+>delete random-text26.txt
+>delete random-text27.txt
+>delete random-text28.txt
+>delete random-text29.txt
+>delete random-text30.txt
+>delete random-text31.txt
+>delete random-text32.txt
+>delete random-text33.txt
+>delete random-text34.txt
+>delete random-text35.txt
+>delete random-text36.txt
+>delete random-text37.txt
+>delete random-text38.txt
+>delete random-text39.txt
+>delete random-text40.txt
+>delete random-text41.txt
+>delete random-text42.txt
+>delete random-text43.txt
+>delete random-text44.txt
+>delete random-text45.txt
+>delete random-text46.txt
+>delete random-text47.txt
+>delete random-text48.txt
+>delete random-text49.txt
+>
+>
+>quit
+Proxy stdout: Response: Defer
+Testing done.  Elapsed time = 1.72 seconds
+ALL TESTS PASSED

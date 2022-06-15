@@ -1,0 +1,17 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:11740
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/B01-sigpipe.cmd'
+># Test ability of proxy to handle SIGPIPE signal
+>generate r1.txt 1k
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:31252
+># Send SIGPIPE signal to proxy
+>signal 
+>fetch f1 r1.txt s1
+Client: Fetching '/r1.txt' from ece011.ece.local.cmu.edu:31252
+>wait *
+>check f1
+Request f1 yielded expected status 'ok'
+>quit
+Testing done.  Elapsed time = 1.18 seconds
+ALL TESTS PASSED

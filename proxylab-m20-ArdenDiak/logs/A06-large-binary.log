@@ -1,0 +1,20 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:28323
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/A06-large-binary.cmd'
+># Test ability to retrieve 1MB binary file
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:32175
+># This file will contain arbitrary byte values
+>generate big-binary.bin 1M
+>request r1 big-binary.bin s1
+Client: Requesting '/big-binary.bin' from ece011.ece.local.cmu.edu:32175
+>wait *
+>respond r1
+Server responded to request r1 with status ok
+>wait *
+>check r1
+Request r1 yielded expected status 'ok'
+>delete big-binary.bin
+>quit
+Testing done.  Elapsed time = 1.22 seconds
+ALL TESTS PASSED

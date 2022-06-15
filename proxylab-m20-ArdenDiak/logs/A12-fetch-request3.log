@@ -1,0 +1,209 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:28705
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/A12-fetch-request3.cmd'
+># Test ability to handle combination of fetches and requests
+>serve s1 s2 s3
+Server s1 running at ece011.ece.local.cmu.edu:5366
+Server s2 running at ece011.ece.local.cmu.edu:17869
+Server s3 running at ece011.ece.local.cmu.edu:16319
+>generate random-text1.txt 2K 
+>generate random-text2.txt 4K 
+>generate random-text3.txt 6K
+>generate random-text4.txt 8K
+>generate random-text5.txt 10K
+>generate random-text6.txt 12K
+>fetch f1 random-text1.txt s1
+Client: Fetching '/random-text1.txt' from ece011.ece.local.cmu.edu:5366
+>fetch f2 random-text2.txt s2
+Client: Fetching '/random-text2.txt' from ece011.ece.local.cmu.edu:17869
+>fetch f3 random-text3.txt s3
+Client: Fetching '/random-text3.txt' from ece011.ece.local.cmu.edu:16319
+>fetch f4 random-text4.txt s3
+Client: Fetching '/random-text4.txt' from ece011.ece.local.cmu.edu:16319
+>fetch f5 random-text5.txt s2
+Client: Fetching '/random-text5.txt' from ece011.ece.local.cmu.edu:17869
+>fetch f6 random-text6.txt s1
+Client: Fetching '/random-text6.txt' from ece011.ece.local.cmu.edu:5366
+>wait f1 f2 f3 f4 f5 f6
+>check f1
+Request f1 yielded expected status 'ok'
+>check f2
+Request f2 yielded expected status 'ok'
+>check f3
+Request f3 yielded expected status 'ok'
+>check f4
+Request f4 yielded expected status 'ok'
+>check f5
+Request f5 yielded expected status 'ok'
+>check f6
+Request f6 yielded expected status 'ok'
+># These shouldn't get cached
+>request r1 random-text1.txt s2
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:17869
+>request r2 random-text2.txt s3
+Client: Requesting '/random-text2.txt' from ece011.ece.local.cmu.edu:16319
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:5366/random-text1.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+>request r3 random-text3.txt s1
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Client: Requesting '/random-text3.txt' from ece011.ece.local.cmu.edu:5366
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:5366/random-text1.txt HTTP/1.0
+Proxy stdout: ======================
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5366
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text1.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5366
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:17869/random-text2.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+>request r4 random-text4.txt s1
+Client: Requesting '/random-text4.txt' from ece011.ece.local.cmu.edu:5366
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:17869/random-text2.txt HTTP/1.0
+Proxy stdout: ======================
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:17869
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text2.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:17869
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:16319/random-text3.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:16319/random-text3.txt HTTP/1.0
+Proxy stdout: ======================
+>request r5 random-text5.txt s3
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:16319
+Client: Requesting '/random-text5.txt' from ece011.ece.local.cmu.edu:16319
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text3.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:16319
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:16319/random-text4.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:16319/random-text4.txt HTTP/1.0
+Proxy stdout: ======================
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:16319
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text4.txt HTTP/1.0
+>request r6 random-text6.txt s2
+Proxy stdout: Host: ece011.ece.local.cmu.edu:16319
+Client: Requesting '/random-text6.txt' from ece011.ece.local.cmu.edu:17869
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:17869/random-text5.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:17869/random-text5.txt HTTP/1.0
+Proxy stdout: ======================
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:17869
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text5.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:17869
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+>wait r1
+Proxy stdout: cli <--> pxy @ localhost:28705
+>respond r1
+Server responded to request r1 with status ok
+Proxy stdout: ======================
+>wait r2
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:5366/random-text6.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:5366/random-text6.txt HTTP/1.0
+Proxy stdout: ======================
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5366
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-text6.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5366
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli <--> pxy @ localhost:28705
+Proxy stdout: ======================
+Proxy stdout: cli_get_req: GET http://ece011.ece.local.cmu.edu:17869/random-text1.txt HTTP/1.0
+Proxy stdout: cli_reqd_host: ece011.ece.local.cmu.edu
+Proxy stdout: cli_req_hdrs:
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: GET http://ece011.ece.local.cmu.edu:17869/random-text1.txt HTTP/1.0
+Proxy stdout: ======================
+>respond r2
+Server responded to request r2 with status ok
+>wait r3
+>respond r3
+Server responded to request r3 with status ok
+>wait r4
+>respond r4
+Server responded to request r4 with status ok
+>wait r5
+>respond r5
+Server responded to request r5 with status ok
+>wait r6
+>respond r6
+Server responded to request r6 with status ok
+>wait *
+>check r1
+Request r1 yielded expected status 'ok'
+>check r2
+Request r2 yielded expected status 'ok'
+>check r3
+Request r3 yielded expected status 'ok'
+>check r4
+Request r4 yielded expected status 'ok'
+>check r5
+Request r5 yielded expected status 'ok'
+>check r6
+Request r6 yielded expected status 'ok'
+>quit
+Proxy stdout: cli      pxy <
+Testing done.  Elapsed time = 1.28 seconds
+ALL TESTS PASSED

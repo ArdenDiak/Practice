@@ -1,0 +1,887 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:23402
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D13-multi-evict1.cmd'
+># Test ability to evict multiple objects to make room for big ones
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:5262
+>generate little-text00.txt 10K
+>generate little-text01.txt 10K
+>generate little-text02.txt 10K
+>generate little-text03.txt 10K
+>generate little-text04.txt 10K
+>generate little-text05.txt 10K
+>generate little-text06.txt 10K
+>generate little-text07.txt 10K
+>generate little-text08.txt 10K
+>generate little-text09.txt 10K
+>generate big-text00.txt 100K
+>generate big-text01.txt 100K
+>generate big-text02.txt 100K
+>generate big-text03.txt 100K
+>generate big-text04.txt 100K
+>generate big-text05.txt 100K
+>generate big-text06.txt 100K
+>generate big-text07.txt 100K
+>generate big-text08.txt 100K
+>generate big-text09.txt 100K
+>generate big-text10.txt 100K
+># Use 100K of cache
+>fetch fl00 little-text00.txt s1
+Client: Fetching '/little-text00.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl01 little-text01.txt s1
+Client: Fetching '/little-text01.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl02 little-text02.txt s1
+Client: Fetching '/little-text02.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl03 little-text03.txt s1
+Client: Fetching '/little-text03.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl04 little-text04.txt s1
+Client: Fetching '/little-text04.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl05 little-text05.txt s1
+Client: Fetching '/little-text05.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl06 little-text06.txt s1
+Client: Fetching '/little-text06.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fl07 little-text07.txt s1
+Client: Fetching '/little-text07.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl00
+Proxy stdout: Response: Immediate
+>fetch fl08 little-text08.txt s1
+Proxy stdout: 
+Client: Fetching '/little-text08.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text00.txt over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text00.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+>fetch fl09 little-text09.txt s1
+Proxy stdout: Connection: close
+Client: Fetching '/little-text09.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl00
+Proxy stdout: Response: Immediate
+>wait *
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text01.txt over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text01.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text00.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text02.txt over 1 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text02.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text03.txt over 1 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text01.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text03.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text02.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text03.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text04.txt over 4 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text04.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text05.txt over 4 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text05.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text06.txt over 4 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text04.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text06.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+>check fl00
+Request fl00 yielded expected status 'ok'
+>check fl01
+Request fl01 yielded expected status 'ok'
+>check fl02
+Request fl02 yielded expected status 'ok'
+>check fl03
+Request fl03 yielded expected status 'ok'
+>check fl04
+Request fl04 yielded expected status 'ok'
+>check fl05
+Request fl05 yielded expected status 'ok'
+>check fl06
+Request fl06 yielded expected status 'ok'
+>check fl07
+Request fl07 yielded expected status 'ok'
+>check fl08
+Request fl08 yielded expected status 'ok'
+>check fl09
+Request fl09 yielded expected status 'ok'
+># Use another 200K of cache
+>fetch fb00 big-text00.txt s1
+Client: Fetching '/big-text00.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fb01 big-text01.txt s1
+Client: Fetching '/big-text01.txt' from ece011.ece.local.cmu.edu:5262
+>wait *
+># Use another 700K to fill up cache
+>fetch fb02 big-text02.txt s1
+Client: Fetching '/big-text02.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fb03 big-text03.txt s1
+Client: Fetching '/big-text03.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fb04 big-text04.txt s1
+Client: Fetching '/big-text04.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text07.txt over 5 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text05.txt
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+>fetch fb05 big-text05.txt s1
+Proxy stdout: cli      pxy ---> srv:
+Client: Fetching '/big-text05.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: GET /little-text07.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+>fetch fb06 big-text06.txt s1
+Client: Fetching '/big-text06.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: Request-ID: fl08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text08.txt over 6 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+>fetch fb07 big-text07.txt s1
+Proxy stdout: cli      pxy ---> srv:
+Client: Fetching '/big-text07.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: GET /little-text08.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>fetch fb08 big-text08.txt s1
+Client: Fetching '/big-text08.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text06.txt
+>wait *
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text07.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fl09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text09.txt over 8 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text09.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fl09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text08.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text09.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb00
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text00.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text00.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb00
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text01.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text01.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text00.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text01.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text02.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text02.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text03.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text03.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+># These should evict the little entries
+>fetch fb09 big-text09.txt s1
+Client: Fetching '/big-text09.txt' from ece011.ece.local.cmu.edu:5262
+>fetch fb10 big-text10.txt s1
+Client: Fetching '/big-text10.txt' from ece011.ece.local.cmu.edu:5262
+>wait *
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text04.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text04.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text05.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text05.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text06.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text06.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text07.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text07.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text08.txt over 12 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text08.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text02.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text03.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text04.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text05.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text07.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text06.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text08.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text09.txt over 19 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /big-text09.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: fb10
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/big-text10.txt over 19 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+>check fb00
+Request fb00 yielded expected status 'ok'
+>check fb01
+Request fb01 yielded expected status 'ok'
+>check fb02
+Request fb02 yielded expected status 'ok'
+>check fb03
+Request fb03 yielded expected status 'ok'
+>check fb04
+Request fb04 yielded expected status 'ok'
+>check fb05
+Request fb05 yielded expected status 'ok'
+>check fb06
+Request fb06 yielded expected status 'ok'
+>check fb07
+Request fb07 yielded expected status 'ok'
+>check fb08
+Request fb08 yielded expected status 'ok'
+>check fb09
+Request fb09 yielded expected status 'ok'
+>check fb10
+Request fb10 yielded expected status 'ok'
+>delete little-text00.txt
+>delete little-text01.txt
+>delete little-text02.txt
+>delete little-text03.txt
+>delete little-text04.txt
+>delete little-text05.txt
+>delete little-text06.txt
+>delete little-text07.txt
+>delete little-text08.txt
+>delete little-text09.txt
+># These should not be in the cache
+>request rl00 little-text00.txt s1
+Client: Requesting '/little-text00.txt' from ece011.ece.local.cmu.edu:5262
+>request rl01 little-text01.txt s1
+Client: Requesting '/little-text01.txt' from ece011.ece.local.cmu.edu:5262
+>request rl02 little-text02.txt s1
+Client: Requesting '/little-text02.txt' from ece011.ece.local.cmu.edu:5262
+>request rl03 little-text03.txt s1
+Client: Requesting '/little-text03.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: GET /big-text10.txt HTTP/1.0
+>request rl04 little-text04.txt s1
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Client: Requesting '/little-text04.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: fb10
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text10.txt
+Proxy stdout: cache has 19 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text00.txt
+>request rl05 little-text05.txt s1
+Client: Requesting '/little-text05.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text00.txt
+Proxy stdout: cache has 18 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text01.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text01.txt
+Proxy stdout: cache has 17 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text02.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text02.txt
+Proxy stdout: cache has 16 blocks
+>request rl06 little-text06.txt s1
+Client: Requesting '/little-text06.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text03.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text03.txt
+Proxy stdout: cache has 15 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text04.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text04.txt
+Proxy stdout: cache has 14 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text05.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text05.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/big-text09.txt
+Proxy stdout: cache has 14 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text06.txt
+>request rl07 little-text07.txt s1
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text06.txt
+Client: Requesting '/little-text07.txt' from ece011.ece.local.cmu.edu:5262
+Proxy stdout: cache has 13 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text07.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text07.txt
+Proxy stdout: cache has 12 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text08.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text08.txt
+Proxy stdout: cache has 11 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/little-text09.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/little-text09.txt
+Proxy stdout: cache has 10 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:5262/big-text00.txt
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:5262/big-text00.txt
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl00
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text00.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text00.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl00
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl01
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text01.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text01.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl01
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl02
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text02.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text02.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl02
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+>request rl08 little-text08.txt s1
+Client: Requesting '/little-text08.txt' from ece011.ece.local.cmu.edu:5262
+>request rl09 little-text09.txt s1
+Client: Requesting '/little-text09.txt' from ece011.ece.local.cmu.edu:5262
+>wait *
+># Server should respond that the files were not found
+># Out of order response will cause sequential proxy to fail
+>respond rl05 rl06 rl07 rl08 rl09
+Server responded to request rl05 with status not_found (File 'little-text05.txt' not found)
+Server responded to request rl06 with status not_found (File 'little-text06.txt' not found)
+Server responded to request rl07 with status not_found (File 'little-text07.txt' not found)
+Server responded to request rl08 with status not_found (File 'little-text08.txt' not found)
+Server responded to request rl09 with status not_found (File 'little-text09.txt' not found)
+>respond rl00 rl01 rl02 rl03 rl04
+Server responded to request rl00 with status not_found (File 'little-text00.txt' not found)
+Proxy stdout: =====================
+Server responded to request rl01 with status not_found (File 'little-text01.txt' not found)
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl03
+Server responded to request rl02 with status not_found (File 'little-text02.txt' not found)
+Proxy stdout: Response: Deferred
+Server responded to request rl03 with status not_found (File 'little-text03.txt' not found)
+Server responded to request rl04 with status not_found (File 'little-text04.txt' not found)
+Proxy stdout: 
+>wait *
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text03.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text03.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl03
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl04
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text04.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text04.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl04
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl05
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text05.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text05.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl05
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl06
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text06.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text06.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl06
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl07
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text07.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text07.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl07
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl08
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text08.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text08.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl08
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: rl09
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:5262/little-text09.txt over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:5262
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /little-text09.txt HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:5262
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: rl09
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text05.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text06.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text08.txt
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/little-text07.txt
+># Make sure correct response received
+>check rl00 404
+Request rl00 yielded expected status 'not_found'
+>check rl01 404
+Request rl01 yielded expected status 'not_found'
+>check rl02 404
+Request rl02 yielded expected status 'not_found'
+>check rl03 404
+Request rl03 yielded expected status 'not_found'
+>check rl04 404
+Request rl04 yielded expected status 'not_found'
+>check rl05 404
+Request rl05 yielded expected status 'not_found'
+>check rl06 404
+Request rl06 yielded expected status 'not_found'
+>check rl07 404
+Request rl07 yielded expected status 'not_found'
+>check rl08 404
+Request rl08 yielded expected status 'not_found'
+>check rl09 404
+Request rl09 yielded expected status 'not_found'
+># Make sure still have most of the big blocks in cache
+>request rb02 big-text02.txt s1
+Client: Requesting '/big-text02.txt' from ece011.ece.local.cmu.edu:5262
+>request rb03 big-text03.txt s1
+Client: Requesting '/big-text03.txt' from ece011.ece.local.cmu.edu:5262
+>request rb04 big-text04.txt s1
+Client: Requesting '/big-text04.txt' from ece011.ece.local.cmu.edu:5262
+>request rb05 big-text05.txt s1
+Client: Requesting '/big-text05.txt' from ece011.ece.local.cmu.edu:5262
+>request rb06 big-text06.txt s1
+Client: Requesting '/big-text06.txt' from ece011.ece.local.cmu.edu:5262
+>request rb07 big-text07.txt s1
+Client: Requesting '/big-text07.txt' from ece011.ece.local.cmu.edu:5262
+>request rb08 big-text08.txt s1
+Client: Requesting '/big-text08.txt' from ece011.ece.local.cmu.edu:5262
+>request rb09 big-text09.txt s1
+Client: Requesting '/big-text09.txt' from ece011.ece.local.cmu.edu:5262
+>request rb10 big-text10.txt s1
+Client: Requesting '/big-text10.txt' from ece011.ece.local.cmu.edu:5262
+>wait *
+>check rb02
+Request rb02 yielded expected status 'ok'
+>check rb03
+Request rb03 yielded expected status 'ok'
+>check rb04
+Request rb04 yielded expected status 'ok'
+>check rb05
+Request rb05 yielded expected status 'ok'
+>check rb06
+Request rb06 yielded expected status 'ok'
+>check rb07
+Request rb07 yielded expected status 'ok'
+>check rb08
+Request rb08 yielded expected status 'ok'
+>check rb09
+Request rb09 yielded expected status 'ok'
+>check rb10
+Request rb10 yielded expected status 'ok'
+>delete big-text00.txt
+>delete big-text01.txt
+>delete big-text02.txt
+>delete big-text03.txt
+>delete big-text04.txt
+>delete big-text05.txt
+>delete big-text06.txt
+>delete big-text07.txt
+>delete big-text08.txt
+>delete big-text09.txt
+>delete big-text10.txt
+>quit
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:5262/littl
+Testing done.  Elapsed time = 1.78 seconds
+ALL TESTS PASSED

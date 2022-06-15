@@ -1,0 +1,512 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:20654
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D16-unique2.cmd'
+># Make sure cache holds at most one copy of a binary file
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:25276
+>generate random-binary00.bin 100K
+>generate random-binary01.bin 100K
+>generate random-binary02.bin 100K
+>generate random-binary03.bin 100K
+>generate random-binary04.bin 100K
+>generate random-binary05.bin 100K
+>generate random-binary06.bin 100K
+>generate random-binary07.bin 100K
+>generate random-binary08.bin 100K
+>generate random-binary09.bin 100K
+># Use 500K of cache
+>fetch f00 random-binary00.bin s1
+Client: Fetching '/random-binary00.bin' from ece011.ece.local.cmu.edu:25276
+>fetch f01 random-binary01.bin s1
+Client: Fetching '/random-binary01.bin' from ece011.ece.local.cmu.edu:25276
+>fetch f02 random-binary02.bin s1
+Client: Fetching '/random-binary02.bin' from ece011.ece.local.cmu.edu:25276
+>fetch f03 random-binary03.bin s1
+Client: Fetching '/random-binary03.bin' from ece011.ece.local.cmu.edu:25276
+>fetch f04 random-binary04.bin s1
+Client: Fetching '/random-binary04.bin' from ece011.ece.local.cmu.edu:25276
+>wait *
+># Make 5 requests, but defer responses
+>request r05a random-binary05.bin s1
+Client: Requesting '/random-binary05.bin' from ece011.ece.local.cmu.edu:25276
+>request r06a random-binary06.bin s1
+Client: Requesting '/random-binary06.bin' from ece011.ece.local.cmu.edu:25276
+>request r07a random-binary07.bin s1
+Client: Requesting '/random-binary07.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f00
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>request r08a random-binary08.bin s1
+Client: Requesting '/random-binary08.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary00.bin over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary00.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f00
+Proxy stdout: Response: Immediate
+>request r09a random-binary09.bin s1
+Client: Requesting '/random-binary09.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+>wait *
+Proxy stdout: Request-ID: f01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary01.bin over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary01.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f01
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary02.bin over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+># Use 500K of cache, filling it up
+Proxy stdout: GET /random-binary02.bin HTTP/1.0
+>fetch f05 random-binary05.bin s1
+Client: Fetching '/random-binary05.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f02
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary03.bin over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+>fetch f06 random-binary06.bin s1
+Client: Fetching '/random-binary06.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: GET /random-binary03.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f03
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary04.bin over 0 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+>fetch f07 random-binary07.bin s1
+Client: Fetching '/random-binary07.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary04.bin HTTP/1.0
+>fetch f08 random-binary08.bin s1
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Client: Fetching '/random-binary08.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f04
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+>fetch f09 random-binary09.bin s1
+Proxy stdout: 
+Client: Fetching '/random-binary09.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary00.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary04.bin
+>wait *
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary01.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary02.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary03.bin
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r05a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary05.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary05.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r05a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r06a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary06.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary06.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r06a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r07a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary07.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary07.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r07a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r08a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary08.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary08.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r08a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r09a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary09.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary09.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r09a
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary05.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary05.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f05
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary06.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary06.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f06
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary07.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary07.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f07
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary08.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary08.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f08
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: f09
+Proxy stdout: Response: Immediate
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary09.bin over 5 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+># These responses should not generate cache writes
+># since the files were cached due to earlier fetches
+># Out of order response will cause sequential proxy to fail
+>respond r08a r09a r05a r06a r07a
+Server responded to request r08a with status ok
+Server responded to request r09a with status ok
+Server responded to request r05a with status ok
+Server responded to request r06a with status ok
+Server responded to request r07a with status ok
+>wait *
+>check f00
+Request f00 yielded expected status 'ok'
+>check f01
+Request f01 yielded expected status 'ok'
+>check f02
+Request f02 yielded expected status 'ok'
+>check f03
+Request f03 yielded expected status 'ok'
+>check f04
+Request f04 yielded expected status 'ok'
+>check f05
+Request f05 yielded expected status 'ok'
+>check f06
+Request f06 yielded expected status 'ok'
+>check f07
+Request f07 yielded expected status 'ok'
+>check f08
+Request f08 yielded expected status 'ok'
+>check f09
+Request f09 yielded expected status 'ok'
+>check r05a
+Request r05a yielded expected status 'ok'
+>check r06a
+Request r06a yielded expected status 'ok'
+>check r07a
+Request r07a yielded expected status 'ok'
+>check r08a
+Request r08a yielded expected status 'ok'
+>check r09a
+Request r09a yielded expected status 'ok'
+># These should all hit the cache
+>request r00b random-binary00.bin s1
+Client: Requesting '/random-binary00.bin' from ece011.ece.local.cmu.edu:25276
+>request r01b random-binary01.bin s1
+Client: Requesting '/random-binary01.bin' from ece011.ece.local.cmu.edu:25276
+>request r02b random-binary02.bin s1
+Client: Requesting '/random-binary02.bin' from ece011.ece.local.cmu.edu:25276
+>request r03b random-binary03.bin s1
+Client: Requesting '/random-binary03.bin' from ece011.ece.local.cmu.edu:25276
+>request r04b random-binary04.bin s1
+Client: Requesting '/random-binary04.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: GET /random-binary09.bin HTTP/1.0
+>request r05b random-binary05.bin s1
+Client: Requesting '/random-binary05.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: f09
+>request r06b random-binary06.bin s1
+Proxy stdout: Response: Immediate
+Client: Requesting '/random-binary06.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary05.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary06.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary07.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary08.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary09.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary05.bin
+Proxy stdout: cache has 10 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:25276/random-binary00.bin
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:25276/random-binary00.bin
+>request r07b random-binary07.bin s1
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary07.bin
+Client: Requesting '/random-binary07.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: cache has 10 blocks
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary06.bin
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:25276/random-binary04.bin
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:25276/random-binary04.bin
+Proxy stdout: cache has 10 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:25276/random-binary01.bin
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:25276/random-binary01.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary09.bin
+Proxy stdout: cache has 10 blocks
+>request r08b random-binary08.bin s1
+Client: Requesting '/random-binary08.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:25276/random-binary02.bin
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:25276/random-binary02.bin
+Proxy stdout: Caching data for URI: http://ece011.ece.local.cmu.edu:25276/random-binary08.bin
+Proxy stdout: cache has 10 blocks
+Proxy stdout: >> max_time_since_accessed: 0, lru_block's URI: http://ece011.ece.local.cmu.edu:25276/random-binary03.bin
+Proxy stdout: freeeing victim http://ece011.ece.local.cmu.edu:25276/random-binary03.bin
+Proxy stdout: cli ---> pxy      srv:
+>request r09b random-binary09.bin s1
+Proxy stdout: Request-ID: r00b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Client: Requesting '/random-binary09.bin' from ece011.ece.local.cmu.edu:25276
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary00.bin over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary00.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r00b
+>wait *
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r01b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary01.bin over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary01.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r01b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r02b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary02.bin over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary02.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+Proxy stdout: Connection: close
+Proxy stdout: Proxy-Connection: close
+Proxy stdout: Request-ID: r02b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: 
+Proxy stdout: =====================
+Proxy stdout: cli ---> pxy      srv:
+Proxy stdout: Request-ID: r03b
+Proxy stdout: Response: Deferred
+Proxy stdout: 
+Proxy stdout: ======================
+Proxy stdout: Lookup for http://ece011.ece.local.cmu.edu:25276/random-binary03.bin over 10 blocks
+Proxy stdout: cli      pxy <--> srv @ ece011.ece.local.cmu.edu:25276
+Proxy stdout: =======================
+Proxy stdout: cli      pxy ---> srv:
+Proxy stdout: GET /random-binary03.bin HTTP/1.0
+Proxy stdout: Host: ece011.ece.local.cmu.edu:25276
+Proxy stdout: User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1
+>check r00b
+ERROR: Request r00b generated status 'requesting'.  Expecting 'ok'
+>check r01b
+ERROR: Request r01b generated status 'requesting'.  Expecting 'ok'
+>check r02b
+ERROR: Request r02b generated status 'requesting'.  Expecting 'ok'
+>check r03b
+ERROR: Request r03b generated status 'requesting'.  Expecting 'ok'
+>check r04b
+ERROR: Request r04b generated status 'requesting'.  Expecting 'ok'
+Too many errors.  Exiting
+Proxy stdout: Connect
+Testing done.  Elapsed time = 1.41 seconds
+ERROR COUNT = 5

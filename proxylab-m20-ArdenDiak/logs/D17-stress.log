@@ -1,0 +1,27 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:29432
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D17-stress.cmd'
+>option timeout 20000
+>option error 1
+>option linefeed 0
+># Stress proxy with lots of concurrent activity
+>serve s0 s1 s2 s3 s4
+Server s0 running at ece011.ece.local.cmu.edu:9698
+Server s1 running at ece011.ece.local.cmu.edu:32561
+Server s2 running at ece011.ece.local.cmu.edu:30063
+Server s3 running at ece011.ece.local.cmu.edu:8917
+Server s4 running at ece011.ece.local.cmu.edu:2779
+>serve s10
+Server s10 running at ece011.ece.local.cmu.edu:7974
+>generate random-binary00.bin  33K
+>generate random-binary01.bin  50K
+>generate random-binary02.bin  66K
+>generate random-binary03.bin  50K
+>generate random-binary04.bin  50K
+>generate random-binary05.bin  50K
+>generate random-binary06.bin  66K
+>generate random-binary07.bin 100K
+>generate random-binary08.bin 100K
+>generate random-binary09.bin 100K
+>generate random-binary10.bin 100K
+Exiting

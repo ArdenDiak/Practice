@@ -1,0 +1,109 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:5225
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/B10-strict4.cmd'
+># Test ability to handle combination of fetches and requests with
+># strictness level 4: Check for headers specified in writeup
+>option strict 4
+>serve s1 s2 s3
+Server s1 running at ece011.ece.local.cmu.edu:24917
+Server s2 running at ece011.ece.local.cmu.edu:30387
+Server s3 running at ece011.ece.local.cmu.edu:15436
+>generate random-text1.txt 2K 
+>generate random-text2.txt 4K 
+>generate random-text3.txt 6K
+>generate random-text4.txt 8K
+>generate random-text5.txt 10K
+>generate random-text6.txt 12K
+># A sequential proxy can handle this ordering
+># of requests, fetches, and responses.
+>request r1 random-text1.txt s2
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:30387
+>fetch f1 random-text1.txt s1
+Client: Fetching '/random-text1.txt' from ece011.ece.local.cmu.edu:24917
+>request r2 random-text2.txt s3
+Client: Requesting '/random-text2.txt' from ece011.ece.local.cmu.edu:15436
+>fetch f2 random-text2.txt s2
+Client: Fetching '/random-text2.txt' from ece011.ece.local.cmu.edu:30387
+>request r3 random-text3.txt s1
+Client: Requesting '/random-text3.txt' from ece011.ece.local.cmu.edu:24917
+>fetch f3 random-text3.txt s3
+Client: Fetching '/random-text3.txt' from ece011.ece.local.cmu.edu:15436
+>request r4 random-text4.txt s1
+Client: Requesting '/random-text4.txt' from ece011.ece.local.cmu.edu:24917
+>fetch f4 random-text4.txt s3
+Client: Fetching '/random-text4.txt' from ece011.ece.local.cmu.edu:15436
+>request r5 random-text5.txt s3
+Client: Requesting '/random-text5.txt' from ece011.ece.local.cmu.edu:15436
+>fetch f5 random-text5.txt s2
+Client: Fetching '/random-text5.txt' from ece011.ece.local.cmu.edu:30387
+>request r6 random-text6.txt s2
+Client: Requesting '/random-text6.txt' from ece011.ece.local.cmu.edu:30387
+>fetch f6 random-text6.txt s1
+Client: Fetching '/random-text6.txt' from ece011.ece.local.cmu.edu:24917
+>wait r1
+>respond r1
+Server responded to request r1 with status bad_request (Missing Request-ID header)
+>wait r1 f1 r2
+>check r1
+ERROR: Request r1 generated status 'bad_request'.  Expecting 'ok' (Bad request)
+>trace r1
+== Trace of request r1 =========================================================
+Initial request by client had header:
+GET http://ece011.ece.local.cmu.edu:30387/random-text1.txt HTTP/1.0\r\n
+Host: ece011.ece.local.cmu.edu:30387\r\n
+Request-ID: r1\r\n
+Response: Deferred\r\n
+Connection: close\r\n
+Proxy-Connection: close \r\n
+User-Agent: CMU/1.0 Iguana/20180704 PxyDrive/0.0.1\r\n
+\r\n
+--------------------------------------------------------------------------------
+Message received by server had header:
+GET /random-text1.txt HTTP/1.0\r\n
+Host: ece011.ece.local.cmu.edu:30387\r\n
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:3.10.0) Gecko/20191101 Firefox/63.0.1\r\n
+Connection: close\r\n
+Proxy-Connection: close\r\n
+\r\n
+--------------------------------------------------------------------------------
+Message sent by server had header:
+HTTP/1.0 400 Bad request\r\n
+Server: Proxylab driver\r\n
+Request-ID: r1\r\n
+Content-length: 153\r\n
+Content-type: text/html\r\n
+Content-Identifier: s2-/random-text1.txt\r\n
+Sequence-Identifier: 1\r\n
+\r\n
+--------------------------------------------------------------------------------
+Message received by client had header:
+HTTP/1.0 400 Bad request
+Server: Proxylab driver\r\n
+Request-ID: r1\r\n
+Content-length: 153\r\n
+Content-type: text/html\r\n
+Content-Identifier: s2-/random-text1.txt\r\n
+Sequence-Identifier: 1\r\n
+\r\n
+--------------------------------------------------------------------------------
+Response status: bad_request (Missing Request-ID header)
+  Source file in ./source_files/random/random-text1.txt
+Request status:  bad_request (Bad request)
+  Result file in ./response_files/r1-status.html
+>check f1
+ERROR: Request f1 generated status 'bad_request'.  Expecting 'ok' (Bad request)
+>respond r2
+Server responded to request r2 with status bad_request (Missing Request-ID header)
+>wait r2 f2 r3
+>check r2
+ERROR: Request r2 generated status 'bad_request'.  Expecting 'ok' (Bad request)
+>check f2
+ERROR: Request f2 generated status 'bad_request'.  Expecting 'ok' (Bad request)
+>respond r3
+Server responded to request r3 with status bad_request (Missing Request-ID header)
+>wait r3 f3 r4
+>check r3
+ERROR: Request r3 generated status 'bad_request'.  Expecting 'ok' (Bad request)
+Too many errors.  Exiting
+Testing done.  Elapsed time = 1.25 seconds
+ERROR COUNT = 5

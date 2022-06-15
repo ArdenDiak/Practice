@@ -1,0 +1,19 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:6814
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/A03-basic-binary.cmd'
+># Test ability to retrieve binary file
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:18176
+># This file will contain arbitrary byte values
+>generate random-binary.bin 10K
+>request r1 random-binary.bin s1
+Client: Requesting '/random-binary.bin' from ece011.ece.local.cmu.edu:18176
+>wait *
+>respond r1
+Server responded to request r1 with status ok
+>wait *
+>check r1
+Request r1 yielded expected status 'ok'
+>quit
+Testing done.  Elapsed time = 1.18 seconds
+ALL TESTS PASSED

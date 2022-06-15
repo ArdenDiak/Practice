@@ -1,0 +1,20 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:21148
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/A02-basic-text.cmd'
+># Test ability to retrieve text file
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:23012
+>generate random-text.txt 10K
+># Request file from server
+>request r1 random-text.txt s1
+Client: Requesting '/random-text.txt' from ece011.ece.local.cmu.edu:23012
+>wait *
+># Allow server to respond to request
+>respond r1
+Server responded to request r1 with status ok
+>wait *
+>check r1
+Request r1 yielded expected status 'ok'
+>quit
+Testing done.  Elapsed time = 1.18 seconds
+ALL TESTS PASSED

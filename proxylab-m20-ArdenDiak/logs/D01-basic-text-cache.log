@@ -1,0 +1,31 @@
+>proxy proxy
+Proxy set up at ece011.ece.local.cmu.edu:11595
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/D01-basic-text-cache.cmd'
+># Test use of cache
+># This test can be passed by a sequential proxy
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:27391
+>generate random-text1.txt 10K
+>generate random-text2.txt 10K
+>request r1a random-text1.txt s1
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:27391
+>wait *
+>respond r1a
+Server responded to request r1a with status ok
+>wait *
+>check r1a
+Request r1a yielded expected status 'ok'
+>fetch f2 random-text2.txt s1
+Client: Fetching '/random-text2.txt' from ece011.ece.local.cmu.edu:27391
+>wait *
+>check f2
+Request f2 yielded expected status 'ok'
+>request r1b random-text1.txt s1
+Client: Requesting '/random-text1.txt' from ece011.ece.local.cmu.edu:27391
+># No response needed, since can serve from cache
+>wait *
+>check r1b
+Request r1b yielded expected status 'ok'
+>quit
+Testing done.  Elapsed time = 1.22 seconds
+ALL TESTS PASSED

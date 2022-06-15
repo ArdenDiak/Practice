@@ -1,0 +1,19 @@
+>proxy ./proxy
+Proxy set up at ece011.ece.local.cmu.edu:9252
+>source '/afs/andrew.cmu.edu/usr11/aqd/private/18213/review/HTTPS_Web_Proxy/proxylab-m20-ArdenDiak/tests/A05-large-text.cmd'
+># Test ability to retrieve 1MB text file
+>serve s1
+Server s1 running at ece011.ece.local.cmu.edu:2544
+>generate long-text.txt 1M
+>request r1 long-text.txt s1
+Client: Requesting '/long-text.txt' from ece011.ece.local.cmu.edu:2544
+>wait *
+>respond r1
+Server responded to request r1 with status ok
+>wait *
+>check r1
+Request r1 yielded expected status 'ok'
+>delete long-text.txt
+>quit
+Testing done.  Elapsed time = 1.22 seconds
+ALL TESTS PASSED
